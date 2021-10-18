@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Moby Dick",
+    "price": 12.5,
+    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
+    "id": 1
+  },
+  {
+    "title": "The catcher in the rye",
+    "price": 10,
+    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
+    "id": 2
+  },
+  {
+    "title": "The storyteller",
+    "price": 15,
+    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
+    "id": 3
+  }
+]
