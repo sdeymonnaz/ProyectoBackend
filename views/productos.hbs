@@ -1,0 +1,27 @@
+<div>
+    <h1>Listado de productos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listaProductos}}
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.price}}</td>
+                    <td><img src="{{this.thumbnail}}" alt="{{nombre}}" width="100" height="100"></td>
+                    <td>{{this.id}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <br>
+    <button><a href="/productos/form" >Formulario de carga</a></button>
+
+</div>
