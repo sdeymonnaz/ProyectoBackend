@@ -55,7 +55,7 @@ io.on("connection", (socket) => {
 
     
 
-    //Escuchar lista de productos
+    //Actualizar la lista de productos
       book.getAll().then((dataObj) => {
         socket.emit("lista_productos", dataObj);
       });
@@ -79,9 +79,9 @@ app.use("/productos" , productsRoutes)
 
 
 
-app.listen(port, () =>{
+server.listen(port, () =>{
     console.log(`Servidor http escuchando en el puerto ${port}`)
 })
 
-app.on("error", error => console.log(`Error en servidor ${error}`))
+server.on("error", error => console.log(`Error en servidor ${error}`))
 
