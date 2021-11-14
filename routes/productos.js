@@ -1,51 +1,62 @@
 const express = require('express');
 const {Router} = express;
 const router = new Router();
+
+//Load class Contenedor from bookstore.js
 const Contenedor = require('../bookstore')
 
+//Create a new instance of Contenedor with name "book"
 let book = new Contenedor('./productos.txt')
 
+//Create boolean variable admin for restricted access and reply an auth error message
+const administrador = true;
 
-
-// router.get('/', (req, res) => {
-//     book.getAll().then(data => {
-//     res.send(data)
-//     })
-// })
-
-
-//Configuracion de rutas de handlebars para mostrar todos los productos
-router.get('/', (req, res) => {
-    res.render('productos')
+//Setup the path to list all products in the file productos.txt
+router.get('/productos', (req, res) => {
+    book.getAll().then(data => {
+    res.send(data)
+    })
 })
 
-// router.get('/', (req, res) => {
-//     book.getAll().then(data => {
-//     res.render('productos', {layout: 'index', listaProductos: data})
-//     })
-// })
+//Load product by id
+router.get('/productos/:id', (req, res) => {
+    book.getById(parseInt(req.params.id)).then(data => {
+    res.json(data)
+    })
+})
 
-// router.get('/form', (req, res) => {
-//     res.render('form', {layout: 'index'})
-// })
+//Post new products in the file productos.txt
+    router.post("/productos", (req, res) => {
+        (administrador) ? (
+            book.save(req.body).then(data => {
+                res.json('/productos')
+            })
+        ) : (res.send({error: -1, descripcion: "ruta '/productos' método 'post' no autorizada"}))
+    })
 
+//Update product by id
+router.put('/productos/:id', (req, res) => {
+    (administrador) ? (
+        book.updateById(parseInt(req.params.id), req.body).then(data => {
+        res.json(data)
+        })
+    ) : (res.send({error: -1, descripcion: "ruta '/productos/:id' método 'put' no autorizada"}))
+})
 
-// router.post("/productos/form", (req, res) => {
-//     book.save(req.body).then(data => {
-//     res.redirect('/productos')
-//     }) 
-// })
+//Delete product by id
+router.delete('/productos/:id', (req, res) => {
+    (administrador) ? (
+        book.deleteById(parseInt(req.params.id)).then(data => {
+        res.json(data)
+        })
+    ) : (res.send({error: -1, descripcion: "ruta '/productos/:id' método 'delete' no autorizada"}))
+})
 
 
 // router.get("/form", (req, res) => {
 //     res.sendFile(__dirname + '/public/form.html') 
 // })
 
-// router.get('/:id', (req, res) => {
-//     book.getById(parseInt(req.params.id)).then(data => {
-//     res.json(data)
-//     })
-// })
 
 // router.post('/', (req, res) => {
 //     book.save(req.body).then(data => {
@@ -53,16 +64,7 @@ router.get('/', (req, res) => {
 //     })
 // })
 
-// router.delete('/:id', (req, res) => {
-//     book.deleteById(parseInt(req.params.id)).then(data => {
-//     res.json(data)
-//     })
-// })
 
-// router.put('/:id', (req, res) => {
-//     book.updateById(parseInt(req.params.id), req.body).then(data => {
-//     res.json(data)
-//     })
-// })
+
 
 module.exports = router;
