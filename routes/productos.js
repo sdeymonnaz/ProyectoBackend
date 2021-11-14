@@ -53,18 +53,4 @@ router.delete('/productos/:id', (req, res) => {
 })
 
 
-// router.get("/form", (req, res) => {
-//     res.sendFile(__dirname + '/public/form.html') 
-// })
-
-
-// router.post('/', (req, res) => {
-//     book.save(req.body).then(data => {
-//     res.send(data)
-//     })
-// })
-
-
-
-
 module.exports = router;

@@ -14,7 +14,7 @@ const productsRoutes = require('./routes/productos')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-//Middleware for all routes
+//Middlewares for routes
 app.use("/api" , productsRoutes)
 
 

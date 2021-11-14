@@ -1,80 +1,32 @@
 [
   {
-    "title": "Moby Dick",
-    "price": 12.5,
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
-    "id": 1
+    "nombre": "Moby Dick",
+    "descricion": "This classic story of high adventure, manic obsession, and metaphysical speculation was Melville's masterpiece. The tale of Captain Ahab's frantic pursuit of the cunning and notorious white whale Moby Dick, is packed with drama, and draws heavily on the author's own experiences on the high seas.",
+    "codigo": "c1",
+    "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
+    "precio": 6.50,
+    "stock": 20,
+    "id": 1,
+    "timestamp": 1636857369994
   },
   {
-    "title": "The catcher in the rye",
-    "price": 10,
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
-    "id": 2
+    "nombre": "The Catcher in the Rye",
+    "descricion": "The brilliant, funny, meaningful novel (The New Yorker) that established J. D. Salinger as a leading voice in American literature--and that has instilled in millions of readers around the world a lifelong love of books.",
+    "codigo": "n1",
+    "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
+    "precio": 8.25,
+    "stock": 30,
+    "id": 2,
+    "timestamp": 1636857497778
   },
   {
-    "title": "The storyteller",
-    "price": 15,
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
-    "id": 3
-  },
-  {
-    "title": "The Hobbit",
-    "price": 8,
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/2611/9780261103344.jpg",
-    "id": 4
-  },
-  {
-    "title": "Mi planta de naranja lima ",
-    "price": "7",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9789/5002/9789500204446.jpg",
-    "id": 5
-  },
-  {
-    "title": "De la tierra a la luna ",
-    "price": "3.45",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9789/7066/9789706666802.jpg",
-    "id": 7
-  },
-  {
-    "title": "La Odisea",
-    "price": "2.99",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9788/4679/9788467914832.jpg",
-    "id": 8
-  },
-  {
-    "title": "El Quijote",
-    "price": "4.23",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9786/0731/9786073144537.jpg",
-    "id": 9
-  },
-  {
-    "title": "Los 3 mosqueteros",
-    "price": "1.45",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9789/7066/9789706666802.jpg",
-    "id": 10
-  },
-  {
-    "title": "Rayuela",
-    "price": "2.3",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/0075/9780007532278.jpg",
-    "id": 12
-  },
-  {
-    "title": "El tunel",
-    "price": "3.2",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/0075/9780007532278.jpg",
-    "id": 13
-  },
-  {
-    "title": "I, robot",
-    "price": 12,
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/0074/9780007491513.jpg",
-    "id": 6
-  },
-  {
-    "title": "Platero y yo",
-    "price": "1.45",
-    "thumbnail": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9788/4670/9788467019766.jpg",
-    "id": 11
+    "nombre": "The storyteller",
+    "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
+    "codigo": "b1",
+    "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
+    "precio": 12,
+    "stock": 35,
+    "id": 3,
+    "timestamp": 1636857547846
   }
 ]
