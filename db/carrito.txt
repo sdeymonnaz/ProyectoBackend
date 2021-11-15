@@ -1,0 +1,85 @@
+[
+  {
+    "id": "b15430b9-d87c-484d-bf4a-48e9fbe663fd",
+    "timestamp": 1636907800852,
+    "producto": [
+      {
+        "nombre": "Moby Dick",
+        "descricion": "This classic story of high adventure, manic obsession, and metaphysical speculation was Melville's masterpiece. The tale of Captain Ahab's frantic pursuit of the cunning and notorious white whale Moby Dick, is packed with drama, and draws heavily on the author's own experiences on the high seas.",
+        "codigo": "c1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
+        "precio": 6.5,
+        "stock": 20,
+        "id": 1,
+        "timestamp": 1636857369994
+      },
+      {
+        "nombre": "The Catcher in the Rye",
+        "descricion": "The brilliant, funny, meaningful novel (The New Yorker) that established J. D. Salinger as a leading voice in American literature--and that has instilled in millions of readers around the world a lifelong love of books.",
+        "codigo": "n1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
+        "precio": 8.25,
+        "stock": 30,
+        "id": 2,
+        "timestamp": 1636857497778
+      },
+      {
+        "nombre": "The storyteller",
+        "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
+        "codigo": "b1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
+        "precio": 12,
+        "stock": 35,
+        "id": 3,
+        "timestamp": 1636857547846
+      }
+    ]
+  },
+  {
+    "id": "c306c434-ca25-43f9-be31-f24ca2c380a9",
+    "timestamp": 1636908722838,
+    "producto": [
+      {
+        "nombre": "The storyteller",
+        "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
+        "codigo": "b1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
+        "precio": 12,
+        "stock": 35,
+        "id": 3,
+        "timestamp": 1636857547846
+      }
+    ]
+  },
+  {
+    "id": "faffe721-e004-4cc2-bde9-de928ac1f127",
+    "timestamp": 1636908845822,
+    "producto": [
+      {
+        "nombre": "Moby Dick",
+        "descricion": "This classic story of high adventure, manic obsession, and metaphysical speculation was Melville's masterpiece. The tale of Captain Ahab's frantic pursuit of the cunning and notorious white whale Moby Dick, is packed with drama, and draws heavily on the author's own experiences on the high seas.",
+        "codigo": "c1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
+        "precio": 6.5,
+        "stock": 20,
+        "id": 1,
+        "timestamp": 1636857369994
+      },
+      {
+        "nombre": "The Catcher in the Rye",
+        "descricion": "The brilliant, funny, meaningful novel (The New Yorker) that established J. D. Salinger as a leading voice in American literature--and that has instilled in millions of readers around the world a lifelong love of books.",
+        "codigo": "n1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
+        "precio": 8.25,
+        "stock": 30,
+        "id": 2,
+        "timestamp": 1636857497778
+      }
+    ]
+  },
+  {
+    "id": "95da3c55-b121-4691-b54d-9af1fba29a01",
+    "timestamp": 1636940948565,
+    "producto": []
+  }
+]

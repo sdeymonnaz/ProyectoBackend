@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class Contenedor{
+class Product{
     constructor(fileName){
         this.fileName = fileName;
     }
@@ -46,6 +46,7 @@ class Contenedor{
             return { error : 'producto no encontrado' };
         }
         catch(err){
+            console.log(err);
             console.log('Error reading the file.');
         }
     }
@@ -55,7 +56,7 @@ class Contenedor{
         try{
             const data = await fs.promises.readFile(this.fileName, 'utf-8');
             const products = await JSON.parse(data, null, 2);
-            //console.log('Products: ', products);
+            console.log('file content: ', products);
             return products;
         }
         catch(err){
@@ -119,6 +120,12 @@ class Contenedor{
     //     console.log('Error reading the file.');
     // }
 
+
+
+
+
+
+
 }
 
-module.exports = Contenedor
+module.exports = Product;

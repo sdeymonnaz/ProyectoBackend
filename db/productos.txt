@@ -4,7 +4,7 @@
     "descricion": "This classic story of high adventure, manic obsession, and metaphysical speculation was Melville's masterpiece. The tale of Captain Ahab's frantic pursuit of the cunning and notorious white whale Moby Dick, is packed with drama, and draws heavily on the author's own experiences on the high seas.",
     "codigo": "c1",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
-    "precio": 6.50,
+    "precio": 6.5,
     "stock": 20,
     "id": 1,
     "timestamp": 1636857369994
@@ -28,5 +28,15 @@
     "stock": 35,
     "id": 3,
     "timestamp": 1636857547846
+  },
+  {
+    "nombre": "Animal Farm",
+    "descricion": "Mr Jones of Manor Farm is so lazy and drunken that one day he forgets to feed his livestock. The ensuing rebellion under the leadership of the pigs Napoleon and Snowball leads to the animals taking over the farm.",
+    "codigo": "f1",
+    "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/1410/9780141036137.jpg",
+    "precio": 8.99,
+    "stock": 40,
+    "id": 4,
+    "timestamp": 1636940268126
   }
 ]
