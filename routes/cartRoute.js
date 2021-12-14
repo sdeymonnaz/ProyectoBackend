@@ -5,7 +5,7 @@ const router = new Router();
 
 
 //Load class Contenedor from bookstore.js
-import {carritoDao as newCart } from '../Daos/index.js';
+import {carritoDao as newCart } from '../Daos/DAOs.js';
 //const ShoppingCart = require('../Containers/cartContainer')
 
 //Create a new instance of Contenedor with name "book"
@@ -13,28 +13,28 @@ import {carritoDao as newCart } from '../Daos/index.js';
 
 //Create a new instance of Contenedor with name "carrito"
 router.post('/', (req, res) => {
-    newCart.save().then(data => {
+    newCart.saveCart().then(data => {
         res.json('/carrito')
     })
 })
 
 //Delete cart by id
 router.delete('/:id', (req, res) => {
-    newCart.deleteAll(req.params.id).then(data => {
+    newCart.deleteCartAll(req.params.id).then(data => {
     res.json(data)
     })
 })
 
-//Setup the path to list all products in the file carrito.txt
+//Setup the path to list all products in a cart
 router.get('/:id/productos', (req, res) => {
-    newCart.getAll(req.params.id).then(data => {
+    newCart.getCartAll(req.params.id).then(data => {
     res.send(data)
     })
 })
 
 //Post new products in the file carrito.txt
 router.post("/:id/productos", (req, res) => {
-    newCart.updateById(req.params.id, req.body.id).then(data => {
+    newCart.addItemToCart(req.params.id, req.body.id).then(data => {
         console.log(req.body.id)
         res.json('/carrito')
     })
@@ -42,7 +42,7 @@ router.post("/:id/productos", (req, res) => {
 
 //Delete individual products from carrito.txt
 router.delete("/:id/productos/:idProd", (req, res) => {
-    newCart.deleteById(req.params.id, req.params.idProd).then(data => {
+    newCart.deleteItemFromCart(req.params.id, req.params.idProd).then(data => {
         res.json(data)
     })
 })

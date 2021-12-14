@@ -5,7 +5,7 @@ const router = new Router();
 
 //Load class Product from productContainer.js
 //const Product = require('../Containers/productsContainer')
-import { productosDao as newProd } from '../Daos/index.js';
+import { productosDao as newProd } from '../Daos/DAOs.js';
 
 //Create a new instance of Product with name "newProd"
 //let newProd = new Product('./db/productos.txt')

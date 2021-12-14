@@ -38,18 +38,7 @@
   {
     "id": "c306c434-ca25-43f9-be31-f24ca2c380a9",
     "timestamp": 1636908722838,
-    "producto": [
-      {
-        "nombre": "The storyteller",
-        "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
-        "codigo": "b1",
-        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
-        "precio": 12,
-        "stock": 35,
-        "id": 3,
-        "timestamp": 1636857547846
-      }
-    ]
+    "producto": []
   },
   {
     "id": "faffe721-e004-4cc2-bde9-de928ac1f127",
@@ -78,10 +67,44 @@
     ]
   },
   {
-    "id": "d1f2f148-4659-41d1-a5e6-89fe7898d23f",
-    "timestamp": "2021-12-13T00:43:33.004Z",
+    "id": "a6ae0f03-6735-4b47-9133-3c0a440b069a",
+    "timestamp": "2021-12-14T02:45:54.174Z",
     "producto": [
-      null
+      {
+        "nombre": "The storyteller",
+        "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
+        "codigo": "b1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
+        "precio": 12,
+        "stock": 35,
+        "id": 3,
+        "timestamp": 1636857547846
+      },
+      {
+        "nombre": "The Midnight Library",
+        "descricion": "Nora's life has been going from bad to worse. Then at the stroke of midnight on her last day on earth she finds herself transported to a library. There she is given the chance to undo her regrets and try out each of the other lives she might have lived.",
+        "codigo": "N2",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/7868/9781786892737.jpg",
+        "precio": 7.6,
+        "stock": 35,
+        "id": 6,
+        "timestamp": "2021-12-14T02:29:00.043Z"
+      },
+      {
+        "nombre": "Animal Farm",
+        "descricion": "Mr Jones of Manor Farm is so lazy and drunken that one day he forgets to feed his livestock. The ensuing rebellion under the leadership of the pigs Napoleon and Snowball leads to the animals taking over the farm.",
+        "codigo": "f1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/1410/9780141036137.jpg",
+        "precio": 8.99,
+        "stock": 32,
+        "id": 4,
+        "timestamp": 1636940268126
+      }
     ]
+  },
+  {
+    "id": "67daab9a-0911-471d-a49c-92ca17a25103",
+    "timestamp": "2021-12-14T02:46:18.142Z",
+    "producto": []
   }
 ]

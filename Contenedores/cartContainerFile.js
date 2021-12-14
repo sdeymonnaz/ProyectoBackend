@@ -1,7 +1,10 @@
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
-const Product = require('./productsContainer');
-const product = new Product('./db/productos.txt');
+//const fs = require('fs');
+//const { v4: uuidv4 } = require('uuid');
+//const Product = require('./productsContainer');
+import fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
+import Product from './productsContainerFile.js';
+const product = new Product('./db/productos.json');
 
 
 class ShoppingCart{
@@ -16,7 +19,7 @@ class ShoppingCart{
             console.log('File carrito.json read.');
             const cart = await JSON.parse(cartData, null, 2);
             if (cart.length != 0){ //If the file is not empty
-                cart.push({id: uuidv4(), timestamp: Date.now(), producto: []}); //Create new cart and add it to the file
+                cart.push({id: uuidv4(), timestamp: new Date().toISOString(), producto: []}); //Create new cart and add it to the file
                 await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
                 console.log('New cart: ', cart[cart.length-1]);
                 return cart[cart.length-1].id;
@@ -28,7 +31,6 @@ class ShoppingCart{
         }
         catch(err){
             console.log('Error: ', err);
-            console.log('Error reading the file.');
         }
     }
 
@@ -49,7 +51,6 @@ class ShoppingCart{
         }
         catch(err){
             console.log('Error: ', err);
-            console.log('Error reading the file.');
         }
     }
 
@@ -67,7 +68,6 @@ class ShoppingCart{
         }
         catch(err){
             console.log(err);
-            console.log('Error reading the file.');
         }
     }
 
@@ -86,8 +86,7 @@ class ShoppingCart{
             }
         }
         catch(err){
-            console.log(err);
-            console.log('Error reading the file.');
+            console.log('Error: ', err);
         }
     }
 
@@ -107,11 +106,12 @@ class ShoppingCart{
             }
         }
         catch(err){
-            console.log(err);
-            console.log('Error reading the file.');
+            console.log('Error: ', err);
         }
     }
 
 }
 
-module.exports = ShoppingCart;
+export default ShoppingCart;
+
+//module.exports = ShoppingCart;
