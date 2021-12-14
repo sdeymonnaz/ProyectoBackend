@@ -1,11 +1,14 @@
-const express = require('express')
-const app = express()
+//const express = require('express')
+import express from 'express';
+const app = express();
 const port = 8080;
 
 
 //Archivo con las rutas a ejecutar
-const productsRoutes = require('./routes/productsRoute')
-const carritoRoutes = require('./routes/cartRoute')
+import productsRoutes from './routes/productsRoute.js'
+import carritoRoutes from './routes/cartRoute.js'
+//const productsRoutes = require('./routes/productsRoute')
+//const carritoRoutes = require('./routes/cartRoute')
 
 //Lectura de archivos JSON y envio de datos
 app.use(express.json())

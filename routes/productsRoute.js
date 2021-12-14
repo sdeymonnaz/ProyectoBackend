@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express';
 const {Router} = express;
 const router = new Router();
 
 
 //Load class Product from productContainer.js
-const Product = require('../Containers/productsContainer')
+//const Product = require('../Containers/productsContainer')
+import { productosDao as newProd } from '../Daos/index.js';
 
 //Create a new instance of Product with name "newProd"
-let newProd = new Product('./db/productos.txt')
+//let newProd = new Product('./db/productos.txt')
 
 //Create boolean variable admin for restricted access and reply an auth error message
 const administrador = true;
@@ -54,4 +55,4 @@ router.delete('/:id', (req, res) => {
 })
 
 
-module.exports = router;
+export default router;

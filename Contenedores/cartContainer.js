@@ -13,7 +13,7 @@ class ShoppingCart{
     async saveCart(){
         try{
             const cartData = await fs.promises.readFile(this.fileName, 'utf-8'); //Load file
-            console.log('File carrito.txt read.');
+            console.log('File carrito.json read.');
             const cart = await JSON.parse(cartData, null, 2);
             if (cart.length != 0){ //If the file is not empty
                 cart.push({id: uuidv4(), timestamp: Date.now(), producto: []}); //Create new cart and add it to the file
@@ -36,7 +36,7 @@ class ShoppingCart{
     async deleteCartAll(cartId){
         try{
             const cartData = await fs.promises.readFile(this.fileName, 'utf-8'); //Load file
-            console.log('File carrito.txt read.');
+            console.log('File carrito.json read.');
             const cart = await JSON.parse(cartData, null, 2);
             let cartToDelete = cart.find(cart => cart.id == cartId);
             console.log('Cart to delete: ', cartToDelete);
