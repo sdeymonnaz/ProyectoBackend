@@ -32,7 +32,7 @@ router.get('/:id/productos', (req, res) => {
     })
 })
 
-//Post new products in the file carrito.txt
+//Post new products in cart
 router.post("/:id/productos", (req, res) => {
     newCart.addItemToCart(req.params.id, req.body.id).then(data => {
         console.log(req.body.id)

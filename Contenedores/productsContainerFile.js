@@ -49,7 +49,7 @@ class Product{
                     idsList.push(product.id)
                 }
                 let top = Math.max.apply(Math, idsList) + 1 //Get the highest id and increment by 1
-                products.push({...objIn, id: top, timestamp: new Date().toISOString()}); //Add the new product
+                products.push({...objIn, id: top, timestamp: new Date().toLocaleString()}); //Add the new product
                 await fs.promises.writeFile(this.fileName, JSON.stringify(products, null, 2));
                 //console.log('New product id: ', products[products.length-1].id);
                 return products[products.length-1];
@@ -132,5 +132,3 @@ class Product{
 }
 
 export default Product;
-
-//module.exports = Product;

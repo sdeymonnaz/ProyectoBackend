@@ -1,7 +1,7 @@
 let productosDao;
 let carritoDao;
 
-const persistencia = 'file';
+const persistencia = 'MongoDB';
 
 switch (persistencia) {
     case 'file':
@@ -11,6 +11,15 @@ switch (persistencia) {
         productosDao = new ProductosDaoFile('./db/productos.json');
         carritoDao = new CarritoDaoFile('./db/carrito.json');
         console.log('Persistencia: File');
+        break;
+
+    case 'MongoDB':
+        const {default: ProductosDaoMongo} = await import('../Contenedores/productsContainerMongo.js');
+        const {default: CarritoDaoMongo} = await import('../Contenedores/cartContainerMongo.js');
+
+        productosDao = new ProductosDaoMongo('productos');
+        carritoDao = new CarritoDaoMongo('carritos');
+        console.log('Persistencia: MongoDB');
         break;
 }
 

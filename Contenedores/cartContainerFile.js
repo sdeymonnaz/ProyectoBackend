@@ -1,6 +1,3 @@
-//const fs = require('fs');
-//const { v4: uuidv4 } = require('uuid');
-//const Product = require('./productsContainer');
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import Product from './productsContainerFile.js';
@@ -19,7 +16,7 @@ class ShoppingCart{
             console.log('File carrito.json read.');
             const cart = await JSON.parse(cartData, null, 2);
             if (cart.length != 0){ //If the file is not empty
-                cart.push({id: uuidv4(), timestamp: new Date().toISOString(), producto: []}); //Create new cart and add it to the file
+                cart.push({id: uuidv4(), timestamp: new Date().toLocaleString(), producto: []}); //Create new cart and add it to the file
                 await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
                 console.log('New cart: ', cart[cart.length-1]);
                 return cart[cart.length-1].id;
@@ -113,5 +110,3 @@ class ShoppingCart{
 }
 
 export default ShoppingCart;
-
-//module.exports = ShoppingCart;

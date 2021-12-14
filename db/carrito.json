@@ -10,7 +10,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
         "precio": 6.5,
         "stock": 20,
-        "id": 1,
+        "id": "1",
         "timestamp": 1636857369994
       },
       {
@@ -20,7 +20,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
         "precio": 8.25,
         "stock": 30,
-        "id": 2,
+        "id": "2",
         "timestamp": 1636857497778
       },
       {
@@ -30,7 +30,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
         "precio": 12,
         "stock": 35,
-        "id": 3,
+        "id": "3",
         "timestamp": 1636857547846
       }
     ]
@@ -51,7 +51,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
         "precio": 6.5,
         "stock": 20,
-        "id": 1,
+        "id": "1",
         "timestamp": 1636857369994
       },
       {
@@ -61,7 +61,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
         "precio": 8.25,
         "stock": 30,
-        "id": 2,
+        "id": "2",
         "timestamp": 1636857497778
       }
     ]
@@ -77,7 +77,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
         "precio": 12,
         "stock": 35,
-        "id": 3,
+        "id": "3",
         "timestamp": 1636857547846
       },
       {
@@ -87,7 +87,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/7868/9781786892737.jpg",
         "precio": 7.6,
         "stock": 35,
-        "id": 6,
+        "id": "6",
         "timestamp": "2021-12-14T02:29:00.043Z"
       },
       {
@@ -97,7 +97,7 @@
         "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/1410/9780141036137.jpg",
         "precio": 8.99,
         "stock": 32,
-        "id": 4,
+        "id": "4",
         "timestamp": 1636940268126
       }
     ]

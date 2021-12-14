@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+import mongoose from 'mongoose';
 
 
 mongoose.connect('mongodb+srv://seba:Freak123.@ecommerce.sfwbj.mongodb.net/ecomm?retryWrites=true&w=majority');
@@ -21,7 +20,6 @@ class ProductoMongo {
             foto: String,
             precio: Number,
             stock: Number,
-            id: String,
             timestamp: String
         });
     }
@@ -36,9 +34,9 @@ class ProductoMongo {
         }
     }
 
-    async saveCart(producto) {
+    async save(producto) {
         try {
-            const productoGuardado = await this.modelo.create({...producto, id: uuidv4(), timestamp: new Date().toISOString()});
+            const productoGuardado = await this.modelo.create({...producto, timestamp: new Date().toLocaleString()});
             return productoGuardado;
         }
         catch (err) {
@@ -46,7 +44,7 @@ class ProductoMongo {
         }
     }
 
-    async geyById(id) {
+    async getById(id) {
         try {
             const producto = await this.modelo.findById(id);
             return producto;
@@ -89,7 +87,8 @@ class ProductoMongo {
 }
 
 
+export default ProductoMongo;
 
-module.exports = ContenedorMongo;
+//module.exports = ContenedorMongo;
 
     
