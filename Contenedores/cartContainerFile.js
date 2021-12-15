@@ -32,7 +32,7 @@ class ShoppingCart{
     }
 
     //Delete all items in carrito.txt
-    async deleteCartAll(cartId){
+    async deleteCartById(cartId){
         try{
             const cartData = await fs.promises.readFile(this.fileName, 'utf-8'); //Load file
             console.log('File carrito.json read.');

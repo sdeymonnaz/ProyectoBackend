@@ -30,7 +30,7 @@ class CarritoMongo {
         }
     }
 
-    async deleteCartAll(cartId) {
+    async deleteCartById(cartId) {
         try {
             const cartDB = await this.modelo.deleteMany({_id: cartId});
             //await cartDB.save();
@@ -60,23 +60,7 @@ class CarritoMongo {
         }
     }
 
-    async addItemToCart(cartId, itemId) {
-        try {
-            const cartDB = await this.modelo.findById(cartId);
-            console.log('cartDB', cartDB);
-            const itemDB = await newProd.getById(itemId);
-            console.log('itemDB', itemDB);
-            //cartDB.productos.push(producto);
-            //console.log('cartDB.productos', cartDB.productos);
-            //cartDB.productos.push(item);
-            //await cartDB.saveCart();
-            //return cartDB;
-
-        }
-        catch (err) {
-            console.log('Error', err);
-        }
-    }
+    
 
 
 

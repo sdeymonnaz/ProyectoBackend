@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
 
 //Delete cart by id
 router.delete('/:id', (req, res) => {
-    newCart.deleteCartAll(req.params.id).then(data => {
+    newCart.deleteCartById(req.params.id).then(data => {
     res.json(data)
     })
 })
@@ -37,21 +37,28 @@ router.get('/:id/productos', (req, res) => {
 //Post new products in cart
 router.post("/:id/productos", async (req, res) => {
     const cart = await newCart.getCartById(req.params.id)
-    console.log('cart', cart)
-    console.log('cart.productos', cart.productos)
     const product = await newProd.getById(req.body.id)
-    console.log('product', product)
-    cart.productos.push(product)
-    await newCart.updateCart(product)
+    cart[0].productos.push(product)
+    await newCart.updateCart(cart[0])
     res.json(cart)
 })
 
+
 //Delete individual products from carrito.txt
-router.delete("/:id/productos/:idProd", (req, res) => {
-    newCart.deleteItemFromCart(req.params.id, req.params.idProd).then(data => {
-        res.json(data)
-    })
+router.delete("/:id/productos/:idProd", async (req, res) => {
+    const cart = await newCart.getCartById(req.params.id);
+    console.log('cart', cart[0])
+    const index = await cart[0].productos.findIndex(prod => prod._id == req.params.idProd);
+    if (index > -1) {
+        cart[0].productos.splice(index, 1);
+        await newCart.updateCart(cart[0])
+    } else {
+        res.status(404).send("Producto no encontrado")
+    }
+    res.json(cart);
 })
+    
+
 
 
 //export default cartRoute = router;
