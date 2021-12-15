@@ -6,6 +6,8 @@ const router = new Router();
 
 //Load class Contenedor from bookstore.js
 import {carritoDao as newCart } from '../Daos/DAOs.js';
+import {productosDao as newProd } from '../Daos/DAOs.js';
+
 //const ShoppingCart = require('../Containers/cartContainer')
 
 //Create a new instance of Contenedor with name "book"
@@ -27,17 +29,21 @@ router.delete('/:id', (req, res) => {
 
 //Setup the path to list all products in a cart
 router.get('/:id/productos', (req, res) => {
-    newCart.getCartAll(req.params.id).then(data => {
+    newCart.getCartById(req.params.id).then(data => {
     res.send(data)
     })
 })
 
 //Post new products in cart
-router.post("/:id/productos", (req, res) => {
-    newCart.addItemToCart(req.params.id, req.body.id).then(data => {
-        console.log(req.body.id)
-        res.json('/carrito')
-    })
+router.post("/:id/productos", async (req, res) => {
+    const cart = await newCart.getCartById(req.params.id)
+    console.log('cart', cart)
+    console.log('cart.productos', cart.productos)
+    const product = await newProd.getById(req.body.id)
+    console.log('product', product)
+    cart.productos.push(product)
+    await newCart.updateCart(product)
+    res.json(cart)
 })
 
 //Delete individual products from carrito.txt

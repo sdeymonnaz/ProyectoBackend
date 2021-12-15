@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-//import { productosDao as newProd } from '../Daos/DAOs.js';
 
 
 mongoose.connect('mongodb+srv://seba:Freak123.@ecommerce.sfwbj.mongodb.net/ecomm?retryWrites=true&w=majority');
@@ -17,7 +16,7 @@ class CarritoMongo {
     constructor(coleccion) { 
         this.modelo = mongoose.model(coleccion, {
             timestamp: String,
-            productos: []
+            productos: Array
         });
     }
 
@@ -41,9 +40,19 @@ class CarritoMongo {
         }
     }
 
-    async getCartAll(cartId) {
+    async getCartById(cartId) {
         try {
             const data = await this.modelo.find({_id: cartId});
+            return data;
+        }
+        catch (err) {
+            console.log('Error', err);
+        }
+    }
+
+    async updateCart(nuevoElem) {
+        try {
+            const data = await this.modelo.replaceOne({'_id': nuevoElem._id}, nuevoElem);
             return data;
         }
         catch (err) {
