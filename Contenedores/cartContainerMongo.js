@@ -43,7 +43,7 @@ class CarritoMongo {
     async getCartById(cartId) {
         try {
             const data = await this.modelo.find({_id: cartId});
-            return data;
+            return data[0];
         }
         catch (err) {
             console.log('Error', err);

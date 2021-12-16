@@ -48,5 +48,15 @@
     "stock": 32,
     "id": "4",
     "timestamp": 1636940268126
+  },
+  {
+    "nombre": "I, Robot",
+    "descricion": "Isaac Asimov's Robot series - from the iconic collection I, Robot to four classic novels - contains some of the most influential works in the history of science fiction. Establishing and testing the Three Laws of Robotics, they continue to shape the understanding and design of artificial intelligence to this day.",
+    "codigo": "SF3",
+    "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/0082/9780008279554.jpg",
+    "precio": 5.3,
+    "stock": 25,
+    "id": 7,
+    "timestamp": "15/12/2021 17:47:24"
   }
 ]

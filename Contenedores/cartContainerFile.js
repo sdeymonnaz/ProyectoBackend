@@ -16,12 +16,12 @@ class ShoppingCart{
             console.log('File carrito.json read.');
             const cart = await JSON.parse(cartData, null, 2);
             if (cart.length != 0){ //If the file is not empty
-                cart.push({id: uuidv4(), timestamp: new Date().toLocaleString(), producto: []}); //Create new cart and add it to the file
+                cart.push({id: uuidv4(), timestamp: new Date().toLocaleString(), productos: []}); //Create new cart and add it to the file
                 await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
                 console.log('New cart: ', cart[cart.length-1]);
                 return cart[cart.length-1].id;
             }
-            cart.push({id: uuidv4(), timestamp: Date.now(), producto: []}); //Add the new cart to the file
+            cart.push({id: uuidv4(), timestamp: Date.now(), productos: []}); //Add the new cart to the file
             await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
             console.log('New cart: ', cart[cart.length-1]);
             return cart[cart.length-1].id;  
@@ -52,7 +52,7 @@ class ShoppingCart{
     }
 
     //List all items in carrito.txt
-    async getCartAll(cartId){
+    async getCartById(cartId){
         try{
             const cartData = await fs.promises.readFile(this.fileName, 'utf-8');
             const cart = await JSON.parse(cartData, null, 2);
@@ -69,17 +69,16 @@ class ShoppingCart{
     }
 
     //Add item to carrito.txt
-    async addItemToCart(cartId, productId){
+    async updateCart(cart){
         try{
             const cartData = await fs.promises.readFile(this.fileName, 'utf-8');
-            const cart = await JSON.parse(cartData, null, 2);
-            let cartToAdd = cart.find(cart => cart.id == cartId);
-            console.log('Cart to add: ', cartToAdd);
+            const cartAll = await JSON.parse(cartData, null, 2);
+            const cartId = cart.id;
+            let cartToAdd = cartAll.find(cart => cart.id == cartId);
             if (cartToAdd != undefined){
-                    let productToAdd = await product.getById(productId);
-                cartToAdd.producto.push(productToAdd);
-                await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
-                console.log('Product added to: ', cartToAdd);
+                const index = cartAll.indexOf(cartToAdd);
+                cartAll[index] = cart;
+                await fs.promises.writeFile(this.fileName, JSON.stringify(cartAll, null, 2));
             }
         }
         catch(err){
@@ -88,7 +87,7 @@ class ShoppingCart{
     }
 
     //Delete item from carrito.txt
-    async deleteItemFromCart(cartId, productId){
+/*     async deleteItemFromCart(cartId, productId){
         try{
             const cartData = await fs.promises.readFile(this.fileName, 'utf-8');
             const cart = await JSON.parse(cartData, null, 2);
@@ -105,7 +104,7 @@ class ShoppingCart{
         catch(err){
             console.log('Error: ', err);
         }
-    }
+    } */
 
 }
 

@@ -1,7 +1,7 @@
 let productosDao;
 let carritoDao;
 
-const persistencia = 'MongoDB';
+const persistencia = 'file';
 
 switch (persistencia) {
     case 'file':
@@ -23,4 +23,4 @@ switch (persistencia) {
         break;
 }
 
-export { productosDao, carritoDao };
+export { productosDao, carritoDao, persistencia };
