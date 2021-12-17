@@ -11,7 +11,7 @@ mongoose.connection.on('error', (err) => {
     console.log('error connection to mongoDB Atlas', err);
 });
 
-class ProductoMongo {
+export class ProductoMongo {
     constructor(coleccion) { 
         this.modelo = mongoose.model(coleccion, {
             nombre: String,
@@ -87,8 +87,52 @@ class ProductoMongo {
 }
 
 
-export default ProductoMongo;
+export class CarritoMongo {
+    constructor(coleccion) { 
+        this.modelo = mongoose.model(coleccion, {
+            timestamp: String,
+            productos: Array
+        });
+    }
 
-//module.exports = ContenedorMongo;
+    async saveCart() {
+        try {
+            const cartDB = await this.modelo.create({timestamp: new Date().toLocaleString(), productos: []});
+            return cartDB;
+        }
+        catch (err) {
+            console.log('Error', err);
+        }
+    }
 
-    
+    async deleteCartById(cartId) {
+        try {
+            const cartDB = await this.modelo.deleteMany({_id: cartId});
+            return cartDB;
+        }
+        catch (err) {
+            console.log('Error', err);
+        }
+    }
+
+    async getCartById(cartId) {
+        try {
+            const data = await this.modelo.find({_id: cartId});
+            return data[0];
+        }
+        catch (err) {
+            console.log('Error', err);
+        }
+    }
+
+    async updateCart(nuevoElem) {
+        try {
+            const data = await this.modelo.replaceOne({'_id': nuevoElem._id}, nuevoElem);
+            return data;
+        }
+        catch (err) {
+            console.log('Error', err);
+        }
+    }
+
+}

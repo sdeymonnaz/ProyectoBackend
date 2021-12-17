@@ -116,5 +116,21 @@
     "id": "11c63a9b-7349-4f3b-83f4-6f6c669e407a",
     "timestamp": "15/12/2021 18:02:51",
     "productos": []
+  },
+  {
+    "id": "28bd51e6-964f-4b55-826b-51a1a7667d30",
+    "timestamp": "16/12/2021 22:36:24",
+    "productos": [
+      {
+        "nombre": "The storyteller",
+        "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
+        "codigo": "b1",
+        "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
+        "precio": 12,
+        "stock": 35,
+        "id": "3",
+        "timestamp": 1636857547846
+      }
+    ]
   }
 ]

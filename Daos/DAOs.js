@@ -1,24 +1,24 @@
 let productosDao;
 let carritoDao;
 
-const persistencia = 'firebase';
+const persistencia = 'file';
 
 switch (persistencia) {
     case 'file':
-        const {default: ProductosDaoFile} = await import('../Contenedores/productsContainerFile.js');
-        const {default: CarritoDaoFile} = await import('../Contenedores/cartContainerFile.js');
+        const {ProductoFile} = await import('../Contenedores/ContainerFiles.js');
+        const {CarritoFile} = await import('../Contenedores/ContainerFiles.js');
 
-        productosDao = new ProductosDaoFile('./db/productos.json');
-        carritoDao = new CarritoDaoFile('./db/carrito.json');
+        productosDao = new ProductoFile('./db/productos.json');
+        carritoDao = new CarritoFile('./db/carrito.json');
         console.log('Persistencia: File');
         break;
 
     case 'MongoDB':
-        const {default: ProductosDaoMongo} = await import('../Contenedores/productsContainerMongo.js');
-        const {default: CarritoDaoMongo} = await import('../Contenedores/cartContainerMongo.js');
+        const {ProductoMongo} = await import('../Contenedores/ContainerMongo.js');
+        const {CarritoMongo} = await import('../Contenedores/ContainerMongo.js');
 
-        productosDao = new ProductosDaoMongo('productos');
-        carritoDao = new CarritoDaoMongo('carritos');
+        productosDao = new ProductoMongo('productos');
+        carritoDao = new CarritoMongo('carritos');
         console.log('Persistencia: MongoDB');
         break;
 
