@@ -15,7 +15,7 @@ console.log('Firebase database connected');
 const db = admin.firestore();
 
 
-class ProductoFirebase{
+export class ProductoFirebase{
     constructor(collection){
       this.collection = collection;
         this.query = db.collection(this.collection);;
@@ -102,32 +102,59 @@ class ProductoFirebase{
     }
 }
 
-//const newFirebase = new ProductoFirebase('productos');
+//Class carrito to handle items in the cart
+export class CarritoFirebase{
+  constructor(collection){
+    this.collection = collection;
+      this.query = db.collection(this.collection);;
+  }
+
+  async saveCart(){
+    try{
+      let doc = this.query.doc(uuidv4());
+      await doc.create({
+        "timestamp": new Date().toLocaleString(),
+        "productos": []
+        });
+    }
+    catch(error){
+      console.log('Error en saveCart', error);
+    }
+  }
+
+  async deleteCartById(id){
+    try{
+      let doc = this.query.doc(id);
+      await doc.delete();
+    }
+    catch(error){
+      console.log('Error en deleteById', error);
+    }
+
+  }
+
+  async getCartById(id){
+    try{
+      const doc = await this.query.doc(id).get();
+      return {
+        id: doc.id,
+        ...doc.data()
+      };
+    }
+    catch(error){
+      console.log('Error en getById', error);
+    }
+  }
+
+  async updateCart(nuevoElem){
+    try{
+      let doc = this.query.doc(nuevoElem.id);
+      await doc.update(nuevoElem);
+    }
+    catch(error){
+      console.log('Error en updateById', error);
+    }
+  }
 
 
-// newFirebase.getAll().then(products => {
-//   console.log('GetAll', products);
-//   }
-// );
-
-// newFirebase.getById("L9ovcBzAPGJX2ptbitbi").then(product => {
-//   console.log('getById', product);
-//   }
-// );
-
-// newFirebase.save({
-//   "nombre": "The storyteller",
-//   "descripcion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
-//   "codigo": "b1",
-//   "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
-//   "precio": 12,
-//   "stock": 35,
-//   "id": "1",
-// });
-
-//newFirebase.deleteById("4");
-
-//newFirebase.deleteAll();
-
-export default ProductoFirebase;
-
+}

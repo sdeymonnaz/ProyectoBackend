@@ -23,11 +23,11 @@ switch (persistencia) {
         break;
 
     case 'firebase':
-        const {default: ProductosDaoFirebase} = await import('../Contenedores/productsContainerFirebase.js');
-        //const {default: CarritoDaoFirebase} = await import('../Contenedores/cartContainerFirebase.js');
+        const {ProductoFirebase} = await import('../Contenedores/ContainerFirebase.js');
+        const {CarritoFirebase} = await import('../Contenedores/ContainerFirebase.js');
 
-        productosDao = new ProductosDaoFirebase('productos');
-        //carritoDao = new CarritoDaoFirebase();
+        productosDao = new ProductoFirebase('productos');
+        carritoDao = new CarritoFirebase('carrito');
         console.log('Persistencia: Firebase');
         break;
 }

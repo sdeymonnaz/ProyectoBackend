@@ -60,13 +60,7 @@ class CarritoMongo {
         }
     }
 
-    
-
-
-
-
 }
-
 
 export default CarritoMongo;
 
