@@ -1,7 +1,7 @@
 let productosDao;
 let carritoDao;
 
-const persistencia = 'MongoDB';
+const persistencia = 'file';
 
 switch (persistencia) {
     case 'file':
