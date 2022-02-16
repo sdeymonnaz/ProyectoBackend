@@ -1,0 +1,33 @@
+#loginBox{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    background-color:lightblue;
+    height: 100px;
+}
+
+#logoffButton{
+    height: 40px;
+    margin-top: 20px;
+}
+
+#msnBox{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+
+#user{
+    color: blue;
+    font-weight: 700;
+}
+
+#msnDate{
+    color: brown;
+}
+
+#msnText{
+    color: green;
+    font-style: italic;
+}
