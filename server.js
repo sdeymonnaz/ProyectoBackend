@@ -1,5 +1,10 @@
 //const express = require('express')
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 import session from 'express-session';
 import mongoose from 'mongoose';
 import passport from 'passport';
@@ -13,6 +18,8 @@ import productsRoutes from './routes/productsRoute.js'
 import carritoRoutes from './routes/cartRoute.js'
 import userRoutes from './routes/userRoute.js'
 
+//Archivos estaticos
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Lectura de archivos JSON y envio de datos
 app.use(express.json())
@@ -24,8 +31,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
-
-
 
 ///Passport
 app.use(passport.initialize());
