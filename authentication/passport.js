@@ -2,6 +2,8 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
 import User from "../models/usuario.js";
+import {carritoDao as newCart } from '../Daos/DAOs.js';
+
 
 
 //Funcion para encriptar contraseña
@@ -49,7 +51,16 @@ passport.use("local-signup", new LocalStrategy(
         console.log('user encontrado en MongoDB:', user);
 
     if (!user) {
-        let userNew = User({username, password:hashPassword(password), nombre: req.body.nombre, direccion: req.body.direccion, edad: req.body.edad, telefono: req.body.telefono, foto: req.body.foto});
+        let userNew = await User({
+            username,
+            password:hashPassword(password),
+            nombre: req.body.nombre,
+            direccion: req.body.direccion,
+            edad: req.body.edad,
+            telefono: req.body.telefono,
+            foto: req.body.foto,
+            cart: await newCart.saveCart()
+        });
         await userNew.save({returnNewDocument: true});
         return done(null, userNew);
         }

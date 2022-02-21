@@ -10,6 +10,8 @@ import multer from 'multer';
 import passportConfig from '../authentication/passport.js';
 
 
+
+
 //Connect to MongoDB
 mongoose.connect('mongodb+srv://seba:Freak123.@ecommerce.sfwbj.mongodb.net/ecomm?retryWrites=true&w=majority');
 
@@ -46,11 +48,11 @@ router.get('/register', (req, res) => {
 });
 
 router.post("/register",
+    upload.single("foto"),
     passport.authenticate("local-signup", {
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
     }),
-    upload.single("foto"),
     (req, res, next) => {
         const file = req.file;
         if (!file) {
@@ -58,8 +60,7 @@ router.post("/register",
             error.httpStatusCode = 400;
             return next(error);
         }
-        console.log("File uploaded");
-        res.send(file);
+        res.send("File uploaded");
     }
 );
 

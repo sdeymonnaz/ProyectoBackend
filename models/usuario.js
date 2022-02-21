@@ -15,6 +15,7 @@ const usuariosSchema = new mongoose.Schema({
   edad: Number,
   telefono: String,
   foto: String,
+  cart: Array
 });
 
 const User = mongoose.model(usuariosCollection, usuariosSchema);

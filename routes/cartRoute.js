@@ -3,7 +3,7 @@ const {Router} = express;
 const router = new Router();
 
 
-//Load class Contenedor from bookstore.js
+//Load class Contenedor from each container
 import {carritoDao as newCart } from '../Daos/DAOs.js';
 import {productosDao as newProd } from '../Daos/DAOs.js';
 import {persistencia as persist} from '../Daos/DAOs.js';

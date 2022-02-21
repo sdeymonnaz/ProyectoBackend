@@ -132,12 +132,12 @@ export class CarritoFile{
             if (cart.length != 0){ //If the file is not empty
                 cart.push({id: uuidv4(), timestamp: new Date().toLocaleString(), productos: []}); //Create new cart and add it to the file
                 await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
-                console.log('New cart: ', cart[cart.length-1]);
+                //console.log('New cart: ', cart[cart.length-1]);
                 return cart[cart.length-1].id;
             }
             cart.push({id: uuidv4(), timestamp: Date.now(), productos: []}); //Add the new cart to the file
             await fs.promises.writeFile(this.fileName, JSON.stringify(cart, null, 2));
-            console.log('New cart: ', cart[cart.length-1]);
+            //console.log('New cart: ', cart[cart.length-1]);
             return cart[cart.length-1].id;  
         }
         catch(err){
