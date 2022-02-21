@@ -83,6 +83,14 @@ router.get("/failedLogin", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/loginError.html"));
 })
 
+router.get("/home", auth, (req, res) => {
+    //console.log('req.user: ', req.user);
+    const userName = req.user.username;
+    const userNameName = req.user.nombre;
+    const userNameFoto = req.user.foto;
+    res.render(path.join(process.cwd(), "public/home.ejs"), {userName, userNameName, userNameFoto});
+});
+
 
 
 export default router;

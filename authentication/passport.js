@@ -17,6 +17,7 @@ const isValidPassword = (user, password) => {
 };
 
 //Estrategia de passport-local para autenticacion de usuarios
+
 //Sign-in de usuarios existentes
 passport.use("local-login", new LocalStrategy(async (username, password, done) => {
     let user = await User.findOne({
@@ -33,7 +34,14 @@ passport.use("local-login", new LocalStrategy(async (username, password, done) =
         return done(null, false, { message: "Contraseña incorrectos" });
     }
 
-    return done(null, user);
+    return done(null,
+        {
+        username: user.username,
+        nombre: user.nombre,
+        foto: user.foto,
+        },
+        { message: "Usuario autenticado" }
+    );
 }));
 
 //Sign-up de usuarios nuevos
