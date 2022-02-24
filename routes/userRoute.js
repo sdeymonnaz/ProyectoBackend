@@ -7,6 +7,7 @@ import passport from 'passport';
 import LocalStrategy from "passport-local";
 LocalStrategy.Strategy = LocalStrategy;
 import multer from 'multer';
+import { productosDao as newProd } from '../Daos/DAOs.js';
 import passportConfig from '../authentication/passport.js';
 
 
@@ -53,15 +54,15 @@ router.post("/register",
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
     }),
-    (req, res, next) => {
-        const file = req.file;
-        if (!file) {
-            const error = new Error("Please upload a file");
-            error.httpStatusCode = 400;
-            return next(error);
-        }
-        res.send("File uploaded");
-    }
+    // (req, res, next) => {
+    //     const file = req.file;
+    //     if (!file) {
+    //         const error = new Error("Please upload a file");
+    //         error.httpStatusCode = 400;
+    //         return next(error);
+    //     }
+    //     res.send("File uploaded");
+    // }
 );
 
 router.get("/failedRegister", (req, res) => {
@@ -83,12 +84,24 @@ router.get("/failedLogin", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/loginError.html"));
 })
 
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.sendFile(path.join(process.cwd(), "public/views/logout.html"));
+});
+
 router.get("/home", auth, (req, res) => {
-    //console.log('req.user: ', req.user);
-    const userName = req.user.username;
-    const userNameName = req.user.nombre;
-    const userNameFoto = req.user.foto;
-    res.render(path.join(process.cwd(), "public/home.ejs"), {userName, userNameName, userNameFoto});
+    console.log('req.user: ', req.user);
+    const user = req.user;
+    //const userName = req.user.username;
+    //const userNameName = req.user.nombre;
+    //const userNameFoto = req.user.foto;
+    //console.log('userNameFoto: ', userNameFoto);
+    const allProducts = newProd.getAll().then(products => {
+        //console.log('products: ', products);
+        //res.render(path.join(process.cwd(), "public/home.ejs"), {userName, userNameName, userNameFoto, products});
+        res.render(path.join(process.cwd(), "public/home.ejs"), {user, products});
+    });
+        
 });
 
 

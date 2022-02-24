@@ -1,7 +1,7 @@
 [
   {
     "nombre": "Moby Dick",
-    "descricion": "This classic story of high adventure, manic obsession, and metaphysical speculation was Melville's masterpiece. The tale of Captain Ahab's frantic pursuit of the cunning and notorious white whale Moby Dick, is packed with drama, and draws heavily on the author's own experiences on the high seas.",
+    "descripcion": "This classic story of high adventure, manic obsession, and metaphysical speculation was Melville's masterpiece. The tale of Captain Ahab's frantic pursuit of the cunning and notorious white whale Moby Dick, is packed with drama, and draws heavily on the author's own experiences on the high seas.",
     "codigo": "c1",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/6817/9781681778488.jpg",
     "precio": 6.5,
@@ -11,7 +11,7 @@
   },
   {
     "nombre": "The Catcher in the Rye",
-    "descricion": "The brilliant, funny, meaningful novel (The New Yorker) that established J. D. Salinger as a leading voice in American literature--and that has instilled in millions of readers around the world a lifelong love of books.",
+    "descripcion": "The brilliant, funny, meaningful novel (The New Yorker) that established J. D. Salinger as a leading voice in American literature--and that has instilled in millions of readers around the world a lifelong love of books.",
     "codigo": "n1",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3167/9780316769488.jpg",
     "precio": 8.25,
@@ -21,7 +21,7 @@
   },
   {
     "nombre": "The storyteller",
-    "descricion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
+    "descripcion": "Having entertained the idea for years, and even offered a few questionable opportunities ('It's a piece of cake! Just do four hours of interviews, find someone else to write it, put your face on the cover, and voila!'), I have decided to write these stories just as I have always done, in my own hand.",
     "codigo": "b1",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/3985/9781398503700.jpg",
     "precio": 12,
@@ -31,7 +31,7 @@
   },
   {
     "nombre": "The Midnight Library",
-    "descricion": "Nora's life has been going from bad to worse. Then at the stroke of midnight on her last day on earth she finds herself transported to a library. There she is given the chance to undo her regrets and try out each of the other lives she might have lived.",
+    "descripcion": "Nora's life has been going from bad to worse. Then at the stroke of midnight on her last day on earth she finds herself transported to a library. There she is given the chance to undo her regrets and try out each of the other lives she might have lived.",
     "codigo": "N2",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/7868/9781786892737.jpg",
     "precio": 7.6,
@@ -41,7 +41,7 @@
   },
   {
     "nombre": "Animal Farm",
-    "descricion": "Mr Jones of Manor Farm is so lazy and drunken that one day he forgets to feed his livestock. The ensuing rebellion under the leadership of the pigs Napoleon and Snowball leads to the animals taking over the farm.",
+    "descripcion": "Mr Jones of Manor Farm is so lazy and drunken that one day he forgets to feed his livestock. The ensuing rebellion under the leadership of the pigs Napoleon and Snowball leads to the animals taking over the farm.",
     "codigo": "f1",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/1410/9780141036137.jpg",
     "precio": 8.99,
@@ -51,7 +51,7 @@
   },
   {
     "nombre": "I, Robot",
-    "descricion": "Isaac Asimov's Robot series - from the iconic collection I, Robot to four classic novels - contains some of the most influential works in the history of science fiction. Establishing and testing the Three Laws of Robotics, they continue to shape the understanding and design of artificial intelligence to this day.",
+    "descripcion": "Isaac Asimov's Robot series - from the iconic collection I, Robot to four classic novels - contains some of the most influential works in the history of science fiction. Establishing and testing the Three Laws of Robotics, they continue to shape the understanding and design of artificial intelligence to this day.",
     "codigo": "SF3",
     "foto": "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/0082/9780008279554.jpg",
     "precio": 5.3,

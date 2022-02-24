@@ -12,7 +12,7 @@ export class ProductoFile{
         try{
             const data = await fs.promises.readFile(this.fileName, 'utf-8');
             const products = await JSON.parse(data, null, 2);
-            console.log('file content: ', products);
+            //console.log('file content: ', products);
             return products;
         }
         catch(err){
