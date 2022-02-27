@@ -59,6 +59,7 @@ passport.use("local-signup", new LocalStrategy(
         console.log('user encontrado en MongoDB:', user);
 
     if (!user) {
+        console.log('req.body:', req.body);
         let userNew = await User({
             username,
             password:hashPassword(password),
@@ -66,7 +67,7 @@ passport.use("local-signup", new LocalStrategy(
             direccion: req.body.direccion,
             edad: req.body.edad,
             telefono: req.body.telefono,
-            foto: req.body.foto,
+            foto: req.file.filename,
             cart: await newCart.saveCart()
         });
         await userNew.save({returnNewDocument: true});

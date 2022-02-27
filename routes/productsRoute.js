@@ -11,7 +11,7 @@ import { productosDao as newProd } from '../Daos/DAOs.js';
 //let newProd = new Product('./db/productos.txt')
 
 //Create boolean variable admin for restricted access and reply an auth error message
-const administrador = true;
+const admin = true;
 
 //List all products 
 router.get('/', (req, res) => {
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 
 //Post new products in the file productos.txt
     router.post("/", (req, res) => {
-        (administrador) ? (
+        (admin) ? (
             newProd.save(req.body).then(data => {
                 res.json('/productos')
             })
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 
 //Update product by id
 router.put('/:id', (req, res) => {
-    (administrador) ? (
+    (admin) ? (
         newProd.updateById(req.params.id, req.body).then(data => {
         res.json(data)
         })
@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
 
 //Delete product by id
 router.delete('/:id', (req, res) => {
-    (administrador) ? (
+    (admin) ? (
         newProd.deleteById(req.params.id).then(data => {
         res.json(data)
         })

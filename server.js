@@ -20,7 +20,7 @@ import userRoutes from './routes/userRoute.js'
 
 //Archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('public/images', express.static(path.join(__dirname, 'public/images')));
 
 //Lectura de archivos JSON y envio de datos
 app.use(express.json())
