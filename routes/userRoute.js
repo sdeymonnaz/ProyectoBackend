@@ -48,22 +48,37 @@ router.get('/register', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public/views/register.html'));
 });
 
-router.post("/register",
-    upload.single("foto"),
-    passport.authenticate("local-signup", {
-        successRedirect: "/api/login",
-        failureRedirect: "/api/failedRegister"
+
+
+
+router.post('/register',
+    passport.authenticate('local-signup', {
+        failureRedirect: '/api/failedRegister'
     }),
-    // (req, res, next) => {
-    //     const file = req.file;
-    //     if (!file) {
-    //         const error = new Error("Please upload a file");
-    //         error.httpStatusCode = 400;
-    //         return next(error);
-    //     }
-    //     res.send("File uploaded");
-    // }
+    (err, req, res, next) => {
+        if (err) next(err);
+        upload.single("foto");
+        res.redirect('/api/login');
+    }
 );
+
+
+// router.post("/register",
+//     upload.single("foto"),
+//     passport.authenticate("local-signup", {
+//         successRedirect: "/api/login",
+//         failureRedirect: "/api/failedRegister"
+//     }),
+//     // (req, res, next) => {
+//     //     const file = req.file;
+//     //     if (!file) {
+//     //         const error = new Error("Please upload a file");
+//     //         error.httpStatusCode = 400;
+//     //         return next(error);
+//     //     }
+//     //     res.send("File uploaded");
+//     // }
+// );
 
 router.get("/failedRegister", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/registerError.html"));    
