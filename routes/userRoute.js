@@ -64,12 +64,13 @@ router.get('/register', (req, res) => {
 ); */
 
 
-router.post("/register",
+router.post('/register',
     passport.authenticate("local-signup", {
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
     })
 );
+
 
 router.get("/failedRegister", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/registerError.html"));    
