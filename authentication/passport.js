@@ -69,12 +69,10 @@ passport.use("local-signup", new LocalStrategy(
             direccion: req.body.direccion,
             edad: req.body.edad,
             telefono: req.body.telefono,
-            foto: req.file.filename,
-            cart: await newCart.saveCart()
+            foto: req.body.foto,
         })
         await userNew.save({returnNewDocument: true});
-        upload.single("foto");
-        //sendEmailToAdmin.sendEmail("sdeymonnaz@gmail.com", "Nuevo usuario registrado", `El usuario ${req.body.email} se ha registrado`);
+        console.log('userNew:', userNew);
         return done(null, userNew);
         }
         return done(null, false, { message: "Usuario ya existe" });

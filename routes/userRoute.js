@@ -50,27 +50,12 @@ router.get('/register', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public/views/register.html'));
 });
 
-
-/* router.post('/register',
-    passport.authenticate('local-signup', {
-        failureRedirect: '/api/failedRegister',
-    }),
-    (err, req, res, next) => {
-        if (err) next(err);
-        //upload.single("foto");
-        //sendEmailToAdmin.sendEmail("sdeymonnaz@gmail.com", "Nuevo usuario registrado", `El usuario ${req.body.email} se ha registrado`);
-        res.redirect('/api/login');
-    }
-); */
-
-
 router.post('/register',
     passport.authenticate("local-signup", {
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
     })
 );
-
 
 router.get("/failedRegister", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/registerError.html"));    

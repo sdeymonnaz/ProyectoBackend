@@ -15,8 +15,6 @@ const usuariosSchema = new mongoose.Schema({
   edad: Number,
   telefono: String,
   foto: String,
-  role: {type: String, enum : ['user','admin'], default: 'user'},
-  cart: Array
 });
 
 const User = mongoose.model(usuariosCollection, usuariosSchema);
