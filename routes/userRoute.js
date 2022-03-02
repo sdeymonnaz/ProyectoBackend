@@ -6,8 +6,10 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import LocalStrategy from "passport-local";
 LocalStrategy.Strategy = LocalStrategy;
-import multer from 'multer';
+//import multer from 'multer';
 import { productosDao as newProd } from '../Daos/DAOs.js';
+//import { SendEmail } from '../notifications/email.js';
+//const sendEmailToAdmin = new SendEmail();
 import passportConfig from '../authentication/passport.js';
 
 
@@ -31,16 +33,16 @@ const auth = (req, res, next) => {
 };
 
 //Funcion para cargar archivo de foto con Multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "public/images");
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, "public/images");
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.originalname);
+//     }
+// });
 
-const upload = multer({storage})
+// const upload = multer({storage})
 
 
 //Rutas de la API
@@ -49,36 +51,25 @@ router.get('/register', (req, res) => {
 });
 
 
-
-
-router.post('/register',
+/* router.post('/register',
     passport.authenticate('local-signup', {
-        failureRedirect: '/api/failedRegister'
+        failureRedirect: '/api/failedRegister',
     }),
     (err, req, res, next) => {
         if (err) next(err);
-        upload.single("foto");
+        //upload.single("foto");
+        //sendEmailToAdmin.sendEmail("sdeymonnaz@gmail.com", "Nuevo usuario registrado", `El usuario ${req.body.email} se ha registrado`);
         res.redirect('/api/login');
     }
+); */
+
+
+router.post("/register",
+    passport.authenticate("local-signup", {
+        successRedirect: "/api/login",
+        failureRedirect: "/api/failedRegister"
+    })
 );
-
-
-// router.post("/register",
-//     upload.single("foto"),
-//     passport.authenticate("local-signup", {
-//         successRedirect: "/api/login",
-//         failureRedirect: "/api/failedRegister"
-//     }),
-//     // (req, res, next) => {
-//     //     const file = req.file;
-//     //     if (!file) {
-//     //         const error = new Error("Please upload a file");
-//     //         error.httpStatusCode = 400;
-//     //         return next(error);
-//     //     }
-//     //     res.send("File uploaded");
-//     // }
-// );
 
 router.get("/failedRegister", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/registerError.html"));    

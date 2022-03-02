@@ -3,6 +3,9 @@ import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
 import User from "../models/usuario.js";
 import {carritoDao as newCart } from '../Daos/DAOs.js';
+import { SendEmail } from '../notifications/email.js';
+const sendEmailToAdmin = new SendEmail();
+import upload from '../multer.js';
 
 
 
@@ -44,7 +47,7 @@ passport.use("local-login", new LocalStrategy(async (username, password, done) =
     );
 }));
 
-//Sign-up de usuarios nuevos
+//Sign-up de usuarios nuevos /////////////////////////////////////////////////////////
 passport.use("local-signup", new LocalStrategy(
     {   
         usernameField: "username",
@@ -59,7 +62,6 @@ passport.use("local-signup", new LocalStrategy(
         console.log('user encontrado en MongoDB:', user);
 
     if (!user) {
-        console.log('req.body:', req.body);
         let userNew = await User({
             username,
             password:hashPassword(password),
@@ -67,10 +69,15 @@ passport.use("local-signup", new LocalStrategy(
             direccion: req.body.direccion,
             edad: req.body.edad,
             telefono: req.body.telefono,
-            foto: req.file.filename,
-            cart: await newCart.saveCart()
-        });
+            foto: req.body.foto,
+            role: "user",
+            cart: []
+            //foto: req.file.filename,
+            //cart: await newCart.saveCart()
+        })
         await userNew.save({returnNewDocument: true});
+        //upload.single("foto"),
+        //sendEmailToAdmin.sendEmail("sdeymonnaz@gmail.com", "Nuevo usuario registrado", `El usuario ${req.body.email} se ha registrado`);
         return done(null, userNew);
         }
         return done(null, false, { message: "Usuario ya existe" });
