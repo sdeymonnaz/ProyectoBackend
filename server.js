@@ -7,7 +7,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import dotenv from 'dotenv';
 dotenv.config();
+import cookieParser from 'cookie-parser';
 import session from 'express-session';
+//import MongoDBStore from 'connect-mongo';
+import MongoStore from 'connect-mongo';
+const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 import passport from 'passport';
 const app = express();
 const port = 8080;
@@ -27,10 +31,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 //Session
+app.use(cookieParser());
 app.use(session({
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    mongoOptions: advancedOptions
+  }),
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {maxAge: 600000},
 }))
 
 ///Passport

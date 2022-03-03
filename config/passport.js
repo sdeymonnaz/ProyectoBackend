@@ -45,6 +45,7 @@ passport.use("local-signup", new LocalStrategy(
         passReqToCallback: true
     },
     async (req, username, password, done) => {
+        console.log('req.body:', req.body);
         let user = await User.findOne({
             username: username
         });
@@ -57,7 +58,6 @@ passport.use("local-signup", new LocalStrategy(
             password,
         })
         await userNew.save({returnNewDocument: true});
-        console.log('userNew:', userNew);
         return done(null, userNew);
         }
         return done(null, false, { message: "Usuario ya existe" });
