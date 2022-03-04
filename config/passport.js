@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
 import User from "../models/usuario.js";
-//import {carritoDao as newCart } from '../Daos/DAOs.js';
+import {carritoDao as newCart } from '../Daos/DAOs.js';
 //import { SendEmail } from '../notifications/email.js';
 //const sendEmailToAdmin = new SendEmail();
 //import upload from '../multer.js';
@@ -56,6 +56,12 @@ passport.use("local-signup", new LocalStrategy(
         let userNew = await User({
             username,
             password,
+            nombre: req.body.nombre,
+            direccion: req.body.direccion,
+            edad: req.body.edad,
+            telefono: req.body.telefono,
+            foto: req.body.foto,
+            cart: await newCart.saveCart()
         })
         await userNew.save({returnNewDocument: true});
         return done(null, userNew);
