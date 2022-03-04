@@ -9,6 +9,8 @@ import passport from 'passport';
 import LocalStrategy from "passport-local";
 LocalStrategy.Strategy = LocalStrategy;
 import passportConfig from '../config/passport.js';
+import { productosDao as newProd } from '../Daos/DAOs.js';
+
 
 
 
@@ -48,8 +50,21 @@ router.get("/failedLogin", (req, res) => {
     res.send("Usuario o contraseña incorrectos");
 })
 
+router.get("/logout", (req, res) => {
+    req.logout();
+    res.send("Logout exitoso");
+});
+
 router.get("/home", auth, (req, res) => {
-    res.json({username: req.user.username});
+    const User = req.user;
+    const allProducts = newProd.getAll()
+    .then(allProducts => {
+        res.send({allProducts, User});
+    })
+    .catch(err => {
+        res.send(err);
+    });
+    //res.json({username: req.user.username});
 })
 
 
