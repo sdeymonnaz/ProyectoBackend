@@ -4,12 +4,13 @@ const {Router} = express;
 const router = new Router();
 import MongoDB from '../db/MongoDB.js';
 const mongo = new MongoDB();
-//import mongoose from 'mongoose';
 import passport from 'passport';
 import LocalStrategy from "passport-local";
 LocalStrategy.Strategy = LocalStrategy;
 import passportConfig from '../config/passport.js';
 import { productosDao as newProd } from '../Daos/DAOs.js';
+import { carritoDao as newCart } from '../Daos/DAOs.js';
+import User from "../models/usuario.js";
 
 
 
@@ -66,6 +67,7 @@ router.get("/home", auth, (req, res) => {
     });
     //res.json({username: req.user.username});
 })
+
 
 
 

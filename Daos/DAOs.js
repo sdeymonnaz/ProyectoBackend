@@ -1,7 +1,8 @@
 let productosDao;
 let carritoDao;
+let usuarioDao;
 
-const persistencia = 'file';
+const persistencia = 'MongoDB';
 
 switch (persistencia) {
     case 'file':
@@ -16,9 +17,11 @@ switch (persistencia) {
     case 'MongoDB':
         const {ProductoMongo} = await import('../Contenedores/ContainerMongo.js');
         const {CarritoMongo} = await import('../Contenedores/ContainerMongo.js');
+        //const {UsuarioMongo} = await import('../Contenedores/ContainerMongo.js');
 
         productosDao = new ProductoMongo('productos');
         carritoDao = new CarritoMongo('carritos');
+        //usuarioDao = new UsuarioMongo('usuarios');
         console.log('Persistencia: MongoDB');
         break;
 
@@ -32,4 +35,4 @@ switch (persistencia) {
         break;
 }
 
-export { productosDao, carritoDao, persistencia };
+export { productosDao, carritoDao, usuarioDao, persistencia };

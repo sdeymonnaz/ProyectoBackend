@@ -1,16 +1,19 @@
 import mongoose from 'mongoose';
+//import MongoDB from '../db/MongoDB.js';
+//const mongo = new MongoDB();
 
 
-mongoose.connect('mongodb+srv://seba:Freak123.@ecommerce.sfwbj.mongodb.net/ecomm?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://seba:Freak123.@ecommerce.sfwbj.mongodb.net/ecomm?retryWrites=true&w=majority');
 
-mongoose.connection.on('open', () => {
-    console.log('connected to mongoDB Atlas');
-});
+// mongoose.connection.on('open', () => {
+//     console.log('connected to mongoDB Atlas');
+// });
 
-mongoose.connection.on('error', (err) => {
-    console.log('error connection to mongoDB Atlas', err);
-});
+// mongoose.connection.on('error', (err) => {
+//     console.log('error connection to mongoDB Atlas', err);
+// });
 
+// PRODUCTOS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export class ProductoMongo {
     constructor(coleccion) { 
         this.modelo = mongoose.model(coleccion, {
@@ -87,17 +90,19 @@ export class ProductoMongo {
 }
 
 
+// CARRITO ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export class CarritoMongo {
     constructor(coleccion) { 
         this.modelo = mongoose.model(coleccion, {
             timestamp: String,
+            checkout: Boolean,
             productos: Array
         });
     }
 
     async saveCart() {
         try {
-            const cartDB = await this.modelo.create({timestamp: new Date().toLocaleString(), productos: []});
+            const cartDB = await this.modelo.create({timestamp: new Date().toLocaleString(), checkout: false ,productos: []});
             return cartDB;
         }
         catch (err) {
@@ -132,6 +137,33 @@ export class CarritoMongo {
         }
         catch (err) {
             console.log('Error', err);
+        }
+    }
+
+}
+
+// USUARIOS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export class UsuarioMongo {
+    constructor(coleccion) { 
+        this.modelo = mongoose.model(coleccion, {
+            username: String,
+            password: String,
+            nombre: String,
+            direccion: String,
+            edad: Number,
+            telefono: String,
+            foto: String,
+            cart: Array,
+        });
+    }
+
+    async findUserByCartId(cartId) {
+        try {
+            const data = await this.modelo.find({cart: cartId});
+            return data[0];
+        }
+        catch (err) {
+            console.log('Error en findUserById', err);
         }
     }
 
