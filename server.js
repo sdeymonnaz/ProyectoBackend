@@ -1,4 +1,3 @@
-//const express = require('express')
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,7 +8,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-//import MongoDBStore from 'connect-mongo';
 import MongoStore from 'connect-mongo';
 const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 import passport from 'passport';
@@ -64,4 +62,3 @@ app.listen(port, () =>{
 })
 
 app.on("error", error => console.log(`Error en servidor ${error}`))
-

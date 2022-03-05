@@ -2,13 +2,7 @@ import express from 'express';
 const {Router} = express;
 const router = new Router();
 
-
-//Load class Product from productContainer.js
-//const Product = require('../Containers/productsContainer')
 import { productosDao as newProd } from '../Daos/DAOs.js';
-
-//Create a new instance of Product with name "newProd"
-//let newProd = new Product('./db/productos.txt')
 
 //Create boolean variable admin for restricted access and reply an auth error message
 const administrador = true;

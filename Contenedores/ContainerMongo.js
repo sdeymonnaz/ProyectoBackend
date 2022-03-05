@@ -1,17 +1,4 @@
 import mongoose from 'mongoose';
-//import MongoDB from '../db/MongoDB.js';
-//const mongo = new MongoDB();
-
-
-// mongoose.connect('mongodb+srv://seba:Freak123.@ecommerce.sfwbj.mongodb.net/ecomm?retryWrites=true&w=majority');
-
-// mongoose.connection.on('open', () => {
-//     console.log('connected to mongoDB Atlas');
-// });
-
-// mongoose.connection.on('error', (err) => {
-//     console.log('error connection to mongoDB Atlas', err);
-// });
 
 // PRODUCTOS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export class ProductoMongo {
