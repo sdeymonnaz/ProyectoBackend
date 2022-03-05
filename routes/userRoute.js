@@ -12,8 +12,10 @@ import { productosDao as newProd } from '../Daos/DAOs.js';
 import { carritoDao as newCart } from '../Daos/DAOs.js';
 import User from "../models/usuario.js";
 
-
-
+//Configuracion de Logger
+import log4js from '.././utils/logger.js';
+const logger = log4js.getLogger();
+const loggerApi = log4js.getLogger('apisError');
 
 const auth = (req, res, next) => {
     if (req.isAuthenticated()) return next();
