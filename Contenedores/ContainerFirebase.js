@@ -2,12 +2,12 @@ import admin from 'firebase-admin';
 import { v4 as uuidv4} from 'uuid';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-var serviceAccount = require('../db/ecommerce-4b8cb-firebase-adminsdk-l0lrv-60f42acfc4.json');
+var serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://ecommerce-4b8cb.firebaseio.com'
+  databaseURL: FIREBASE_DATABASE_URL
 });
 
 console.log('Firebase database connected');
