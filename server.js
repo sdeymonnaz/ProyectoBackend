@@ -22,21 +22,25 @@ const port = process.env.PORT || 8080;
 const mode = process.argv.slice(2) || "FORK";
 const numCPUs = cpus().length;
 
-
 //Archivo con las rutas a ejecutar
 import productsRoutes from './routes/productsRoute.js'
 import carritoRoutes from './routes/cartRoute.js'
 import userRoutes from './routes/userRoute.js'
 
+//Configuracion de Logger
+import log4js from './utils/logger.js';
+const logger = log4js.getLogger();
+const loggerApi = log4js.getLogger('apisError');
+
 //Configuracion de cluster
 if(cluster.isPrimary && mode == "CLUSTER"){
-  console.log(`Master ${process.pid} is running`);
+  logger.info(`Master ${process.pid} is running`)
   // Fork workers.
     for (let i = 0; i < numCPUs; i++) {
       cluster.fork();
     }
     cluster.on('exit', (worker, code, signal) => {
-      console.log('worker %d died :(', worker.process.pid);
+      logger.info(`worker ${worker.process.pid} died`);
     });
 }else{
   //Archivos estaticos
@@ -77,8 +81,8 @@ if(cluster.isPrimary && mode == "CLUSTER"){
   })
 
   app.listen(port, () =>{
-      console.log(`Servidor http escuchando en el puerto ${port}`)
+    logger.info(`Servidor http escuchando en el puerto: ${port}`);
   })
 
-  app.on("error", error => console.log(`Error en servidor ${error}`))
+  app.on("error", error => loggerApi.error(`Error en servidor ${error}`));
 }

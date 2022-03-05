@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
 
+//Configuracion de Logger
+import log4js from '.././utils/logger.js';
+const logger = log4js.getLogger();
+const loggerApi = log4js.getLogger('apisError');
+
 // PRODUCTOS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export class ProductoMongo {
     constructor(coleccion) { 
@@ -20,7 +25,7 @@ export class ProductoMongo {
             return productos;
         }
         catch (err) {
-            console.log(err);
+            loggerApi.error(`Error en metodo getAll: ${err}`);
         }
     }
 
@@ -30,7 +35,7 @@ export class ProductoMongo {
             return productoGuardado;
         }
         catch (err) {
-            console.log(err);
+            loggerApi.error(`Error en metodo save: ${err}`);
         }
     }
 
@@ -40,7 +45,7 @@ export class ProductoMongo {
             return producto;
         }
         catch (err) {
-            console.log(err);
+            loggerApi.error(`Error en metodo getById: ${err}`);
         }
     }
 
@@ -50,7 +55,7 @@ export class ProductoMongo {
             return producto;
         }
         catch (err) {
-            console.log(err);
+            loggerApi.error(`Error en metodo deleteById: ${err}`);
         }
     }
 
@@ -60,7 +65,7 @@ export class ProductoMongo {
             return productoActualizado;
         }
         catch (err) {
-            console.log(err);
+            loggerApi.error(`Error en metodo updateById: ${err}`);
         }
     }
 
@@ -70,7 +75,7 @@ export class ProductoMongo {
             return productos;
         }
         catch (err) {
-            console.log(err);
+            loggerApi.error(`Error en metodo deleteAll: ${err}`);
         }
     }
 
@@ -93,7 +98,7 @@ export class CarritoMongo {
             return cartDB;
         }
         catch (err) {
-            console.log('Error', err);
+            loggerApi.error(`Error en metodo saveCart: ${err}`);
         }
     }
 
@@ -103,7 +108,7 @@ export class CarritoMongo {
             return cartDB;
         }
         catch (err) {
-            console.log('Error', err);
+            loggerApi.error(`Error en metodo deleteCartById: ${err}`);
         }
     }
 
@@ -113,7 +118,7 @@ export class CarritoMongo {
             return data[0];
         }
         catch (err) {
-            console.log('Error', err);
+            loggerApi.error(`Error en metodo getCartById: ${err}`);
         }
     }
 
@@ -123,7 +128,7 @@ export class CarritoMongo {
             return data;
         }
         catch (err) {
-            console.log('Error', err);
+            loggerApi.error(`Error en metodo updateCart: ${err}`);
         }
     }
 
@@ -150,7 +155,7 @@ export class UsuarioMongo {
             return data[0];
         }
         catch (err) {
-            console.log('Error en findUserById', err);
+            loggerApi.error(`Error en metodo findUserByCartId: ${err}`);
         }
     }
 
