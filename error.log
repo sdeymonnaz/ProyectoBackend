@@ -1,0 +1,31 @@
+[2022-03-05T14:46:33.856] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-05T14:51:24.608] [ERROR] apisError - Error en metodo getById: CastError: Cast to ObjectId failed for value "2" (type string) at path "_id" for model "productos"
+[2022-03-05T14:55:01.553] [ERROR] apisError - Error al registrar usuario: undefined
+[2022-03-05T14:57:43.406] [ERROR] apisError - Error al registrar usuario: function next(err) {
+    // signal to exit route
+    if (err && err === 'route') {
+      return done();
+    }
+
+    // signal to exit router
+    if (err && err === 'router') {
+      return done(err)
+    }
+
+    var layer = stack[idx++];
+    if (!layer) {
+      return done(err);
+    }
+
+    if (layer.method && layer.method !== method) {
+      return next(err);
+    }
+
+    if (err) {
+      layer.handle_error(err, req, res, next);
+    } else {
+      layer.handle_request(req, res, next);
+    }
+  }
+[2022-03-05T14:58:34.753] [ERROR] apisError - Error al registrar usuario: [object Object]
+[2022-03-05T15:01:11.967] [ERROR] apisError - Error al registrar usuario: [Function: next]

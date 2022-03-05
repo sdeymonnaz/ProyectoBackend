@@ -149,14 +149,14 @@ export class UsuarioMongo {
         });
     }
 
-    async findUserByCartId(cartId) {
-        try {
-            const data = await this.modelo.find({cart: cartId});
-            return data[0];
-        }
-        catch (err) {
-            loggerApi.error(`Error en metodo findUserByCartId: ${err}`);
-        }
-    }
+    // async findUserByCartId(cartId) {
+    //     try {
+    //         const data = await this.modelo.find({cart: cartId});
+    //         return data[0];
+    //     }
+    //     catch (err) {
+    //         loggerApi.error(`Error en metodo findUserByCartId: ${err}`);
+    //     }
+    // }
 
 }
