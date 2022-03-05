@@ -1,8 +1,14 @@
 import express from 'express';
 const {Router} = express;
 const router = new Router();
+
+//Send messages after checkout
 import { SendEmail } from '../utils/sendEmail.js';
 const sendEmailToAdmin = new SendEmail();
+import sendSMS from '../utils/sendSMS.js';
+const sendSMSToUser = new sendSMS(process.env.TWILIO_SMS_FROM_NUMBER);
+import sendWA from '../utils/sendWA.js';
+const sendWAtoUser = new sendWA(process.env.TWILIO_WA_FROM_NUMBER);
 
 //Load class Contenedor
 import User from "../models/usuario.js";
@@ -64,18 +70,16 @@ router.post("/:id/checkout", async (req, res) => {
     const cart = await newCart.getCartById(req.params.id).then(data => {
         return data
     })
-    //cart.checkout = true;
-    //await newCart.updateCart(cart);
-    //console.log("cart", cart);
-    console.log('cart.productos:', cart.productos);
+    cart.checkout = true;
+    await newCart.updateCart(cart);
     const cartUser = await User.find({cart: cart._id.toString()}).then(data => {
         return data[0];
     })
-    console.log("cartUser", cartUser);
-    sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, `Nuevo pedido de ${cartUser.username}`, `Usuario: ${cartUser.username} \n Nombre: ${cartUser.nombre} \n Dirección: ${cartUser.direccion} \n Telefono: ${cartUser.telefono} \n Productos: ${JSON.stringify(cart.productos, null, 2)}`);
+    await sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, `Nuevo pedido de ${cartUser.username}`, `Usuario: ${cartUser.username} \n Nombre: ${cartUser.nombre} \n Dirección: ${cartUser.direccion} \n Telefono: ${cartUser.telefono} \n Productos: ${JSON.stringify(cart.productos, null, 2)}`);
+    await sendSMSToUser.send(cartUser.telefono, `Nuevo pedido de ${cartUser.username} recibido y en proceso de preparacion`);
+    await sendWAtoUser.send(cartUser.telefono, `Nuevo pedido de ${cartUser.username}`);
     res.json(cart);
 })
-
 
 
 export default router;

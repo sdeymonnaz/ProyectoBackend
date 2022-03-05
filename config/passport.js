@@ -61,7 +61,7 @@ passport.use("local-signup", new LocalStrategy(
         console.log('req.body:', req.body);
         let user = await User.findOne({
             username: username
-        });
+        })
 
         console.log('user encontrado en MongoDB:', user);
 
