@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,7 @@
     "nodemon": "^2.0.14",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "twilio": "^3.75.0",
     "uuid": "^8.3.2"
   }
