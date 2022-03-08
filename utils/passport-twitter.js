@@ -18,7 +18,6 @@ function (token, tokenSecret, profile, done) {
             user = new User({
                 username: profile.username,
                 password: profile.id,
-                nombre: profile.displayName,
                 foto: profile.photos[0].value,
             });
             user.save(function (err) {

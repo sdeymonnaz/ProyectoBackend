@@ -29,34 +29,52 @@ router.get('/', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-    console.log("Req.body: " + JSON.stringify(req.body));
-    res.sendFile(path.join(process.cwd(), '/public/views/register.html'));
+    const user = req.user;
+    console.log("Req.user en get/register: " + JSON.stringify(user));
+    res.sendFile(path.join(process.cwd(), '/public/views/register.html'), {user});
 });
 
-router.post('/register', (req, res) => {
-    console.log("Register req.body: ", req.body);
-    User.findOne({username: req.body.username}).then(data => {
-        User.updateOne(
-            {$set:
-                {email: req.body.email,
-                nombre: req.body.nombre,
-                direccion: req.body.direccion,
-                edad: req.body.edad,
-                telefono: req.body.telefono,
-                cart: newCart.saveCart()
-            }
-        }).then(data => {
-            console.log('Usuario registrado:', data);
-            res.redirect('/api/home');
-        }).catch(err => {
-            console.log('Error al registrar usuario:', err);
-            res.redirect('/api/register');
-        });
-    }).catch(err => {
-        console.log('Error al registrar usuario:', err);
-        res.redirect('/api/register');
-    })
+// router.post('/register', (req, res) => {
+//     const user = req.user;
+//     User.findOne({username: user.username}).then(data => {
+//         console.log("User encontrado en findOne: ", data);
+//         if (data) {
+//             console.log("Email: ", req.body.email);
+//             const updatedUser = User.findOneAndUpdate({_id: user._id},
+//                 {$set: {email: req.body.email, nombre: req.body.nombre, direccion: req.body.direccion, edad: req.body.edad, telefono: req.body.telefono}},
+//                 {upsert: true, new: true}
+//             ).then(result => {
+//                 console.log("Resultado de update: ", result);
+//                 User.findOne({username: user.username}).then(data => {
+//                     console.log("User encontrado en findOne despues de update: ", data);
+//                 });
+//                 res.redirect('/api/home');
+//             }).catch(err => {
+//                 console.log("Error en update: ", err);
+//             });
+//         }
+//     });
+// });
 
+
+router.post('/register', (req, res) => {
+    const user = req.user;
+    const updatedUser = User.findOneAndUpdate(
+        {_id: user._id},
+        {$set: {
+            email: req.body.email,
+            nombre: req.body.nombre,
+            direccion: req.body.direccion,
+            edad: req.body.edad,
+            telefono: req.body.telefono,
+            cart: newCart.saveCart()}},
+        {upsert: true, new: true}
+    ).then(result => {
+        console.log("Resultado de update: ", result);
+        res.redirect('/api/login');
+    }).catch(err => {
+        console.log("Error en update profile: ", err);
+    });
 });
 
 router.get("/failedRegister", (req, res) => {
@@ -64,15 +82,17 @@ router.get("/failedRegister", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-    console.log("Login req.user.username", req.user.username);
-    console.log("Login req.user.email", req.user.email);
-    const userUsername = req.user.username;
-    const userEmail = User.findOne({email: req.user.email}).then(registeredEmail => {
-        if(registeredEmail.length > 0) {
-            res.redirect('/api/home');
+    console.log("Req.user en get/login: " + JSON.stringify(req.user));
+    const user = req.user;
+    User.find({_id: user._id, email:{$exists:true}}).then(data => {
+        if(data.length > 0) {
+        console.log("User encontrado en find: ", data);
+        res.redirect('/api/home');
         } else {
-            res.redirect('api/register', {userUsername});
+            res.redirect('/api/register');
         }
+    }).catch(err => {
+        console.log("Error en find: ", err);
     });
 });
 
@@ -101,7 +121,6 @@ router.get("/home", auth, (req, res) => {
     .catch(err => {
         res.send(err);
     });
-    //res.json({username: req.user.username});
 })
 
 // Twitter strategy ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +128,7 @@ router.get('/auth/twitter', passport.authenticate('twitter'));
 
 router.get('/auth/twitter/callback',
     passport.authenticate('twitter',
-        {successRedirect: '/api/register',
+        {successRedirect: '/api/login',
         failureRedirect: '/api/failedLogin'}
     ));
 
