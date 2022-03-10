@@ -21,41 +21,35 @@ const isValidPassword = (user, password) => {
 
 //Estrategia de passport-local para autenticacion de usuarios
 //Sign-in de usuarios existentes //////////////////////////////////////////////////////////////////////////////////////////////
-passport.use("local-login", new LocalStrategy(async (username, password, done) => {
-    let user = await User.findOne({
-        username: username,
-        password: password
-    });
+passport.use("local-login", new LocalStrategy(
+    (username, password, done) => {
+    let user = User.findOne({username}, (err, user) => {
+        if (err) {
+            return done(err);
+        }
 
-    console.log('user encontrado en MongoDB:', user);
+        console.log('user encontrado en MongoDB:', user);
 
-    if (user) {
+    // if (user) {
+    //     return done(null, user);
+    // }
+
+    // return done(null, false, {message: "Usuario o contraseña incorrectos"});
+
+        if(!user) {
+            console.log('Usuario no encontrado');
+            return done(null, false);
+        }
+
+        if (!isValidPassword(user, password)) {
+            console.log('Contraseña incorrecta');
+            return done(null, false);
+        }
+
         return done(null, user);
-    }
-
-    return done(null, false, {message: "Usuario o contraseña incorrectos"});
-
-    // if(!user) {
-    //     return done(null, false, { message: "Usuario no existente" });
-    // }
-
-    // if (!isValidPassword(user, password)) {
-    //     return done(null, false, { message: "Usuario o contraseña incorrectos" });
-    // }
-
-    // return done(null, 
-    //     {
-    //         username: user.username,
-    //         nombre: user.nombre,
-    //         direccion: user.direccion,
-    //         edad: user.edad,
-    //         telefono: user.telefono,
-    //         foto: user.foto,
-    //         cart: user.cart
-    //     },    
-    //     { message: "Login exitoso" }
-    // );
-}));
+    });
+    }) 
+);
 
 //Sign-up de usuarios nuevos /////////////////////////////////////////////////////////////////////////////////////////////////
 passport.use("local-signup", new LocalStrategy(
@@ -66,6 +60,8 @@ passport.use("local-signup", new LocalStrategy(
     },
     async (req, username, password, done) => {
         console.log('req.body:', req.body);
+        console.log('req.file:', req.file);
+        const fotoPath = req.file.filename;
         let user = await User.findOne({
             username: username
         })
@@ -75,13 +71,13 @@ passport.use("local-signup", new LocalStrategy(
     if (!user) {
         let userNew = await User({
             username,
-            password,
-            //password: hashPassword(password),
+            //password,
+            password: hashPassword(password),
             nombre: req.body.nombre,
             direccion: req.body.direccion,
             edad: req.body.edad,
             telefono: req.body.telefono,
-            foto: req.file.,
+            foto: fotoPath,
             cart: await newCart.saveCart()
         });
             const AvatarFoto = req.body.foto;

@@ -29,7 +29,7 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register',
-    await upload.single('AvatarFoto'),
+    await upload.single('foto'),
     passport.authenticate("local-signup", {
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
