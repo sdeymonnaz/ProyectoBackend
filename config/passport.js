@@ -16,6 +16,8 @@ const hashPassword = (password) => {
 
 //Funcion para desencriptar contraseña
 const isValidPassword = (user, password) => {
+    console.log("Password en isValidPassword: ", password);
+    console.log("Password en isValidPassword: ", bcrypt.compareSync(password, user.password));
     return bcrypt.compareSync(password, user.password);
 };
 
@@ -23,35 +25,30 @@ const isValidPassword = (user, password) => {
 //Sign-in de usuarios existentes //////////////////////////////////////////////////////////////////////////////////////////////
 passport.use("local-login", new LocalStrategy(async (username, password, done) => {
     let user = await User.findOne({
-        username: username,
+        username: username
     });
 
     console.log('user encontrado en MongoDB:', user);
 
-    if(!user) {
-        console.log('Usuario no encontrado');
-        return done(null, false, { message: "Usuario no existente" });
-    }
-
-    if (!isValidPassword(user, password)) {
-        console.log('contraseña incorrecta');
+    if (!user) {
         return done(null, false, { message: "Usuario o contraseña incorrectos" });
     }
+    
+    if (!isValidPassword(user, password)) {
+        return done(null, false, { message: "Contraseña incorrectos" });
+    }
 
-    console.log('Usuario autenticado');
-    return done(null, 
+    return done(null,
         {
-            username: user.username,
-            nombre: user.nombre,
-            direccion: user.direccion,
-            edad: user.edad,
-            telefono: user.telefono,
-            foto: user.foto,
-            cart: user.cart
-        },    
-        { message: "Login exitoso" }
+        username: user.username,
+        nombre: user.nombre,
+        foto: user.foto,
+        },
+        { message: "Usuario autenticado" }
     );
 }));
+
+
 
 //Sign-up de usuarios nuevos /////////////////////////////////////////////////////////////////////////////////////////////////
 passport.use("local-signup", new LocalStrategy(
@@ -61,8 +58,6 @@ passport.use("local-signup", new LocalStrategy(
         passReqToCallback: true
     },
     async (req, username, password, done) => {
-        console.log('req.body:', req.body);
-        console.log('req.file:', req.file);
         const fotoPath = req.file.filename;
         let user = await User.findOne({
             username: username
