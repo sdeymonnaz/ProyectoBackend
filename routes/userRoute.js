@@ -66,7 +66,7 @@ router.get("/logout", (req, res) => {
 // Home ////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/home", auth, (req, res) => {
     cosole.log("Home");
-    const User = req.user;
+    const user = req.user;
     const allProducts = newProd.getAll()
     .then(allProducts => {
         res.render(path.join(process.cwd(), "public/views/home.ejs"), {user, products});
