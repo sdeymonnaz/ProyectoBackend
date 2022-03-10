@@ -21,35 +21,37 @@ const isValidPassword = (user, password) => {
 
 //Estrategia de passport-local para autenticacion de usuarios
 //Sign-in de usuarios existentes //////////////////////////////////////////////////////////////////////////////////////////////
-passport.use("local-login", new LocalStrategy(
-    (username, password, done) => {
-    let user = User.findOne({username}, (err, user) => {
-        if (err) {
-            return done(err);
-        }
-
-        console.log('user encontrado en MongoDB:', user);
-
-    // if (user) {
-    //     return done(null, user);
-    // }
-
-    // return done(null, false, {message: "Usuario o contraseña incorrectos"});
-
-        if(!user) {
-            console.log('Usuario no encontrado');
-            return done(null, false);
-        }
-
-        if (!isValidPassword(user, password)) {
-            console.log('Contraseña incorrecta');
-            return done(null, false);
-        }
-
-        return done(null, user);
+passport.use("local-login", new LocalStrategy(async (username, password, done) => {
+    let user = await User.findOne({
+        username: username,
     });
-    }) 
-);
+
+    console.log('user encontrado en MongoDB:', user);
+
+    if(!user) {
+        console.log('Usuario no encontrado');
+        return done(null, false, { message: "Usuario no existente" });
+    }
+
+    if (!isValidPassword(user, password)) {
+        console.log('contraseña incorrecta');
+        return done(null, false, { message: "Usuario o contraseña incorrectos" });
+    }
+
+    console.log('Usuario autenticado');
+    return done(null, 
+        {
+            username: user.username,
+            nombre: user.nombre,
+            direccion: user.direccion,
+            edad: user.edad,
+            telefono: user.telefono,
+            foto: user.foto,
+            cart: user.cart
+        },    
+        { message: "Login exitoso" }
+    );
+}));
 
 //Sign-up de usuarios nuevos /////////////////////////////////////////////////////////////////////////////////////////////////
 passport.use("local-signup", new LocalStrategy(
