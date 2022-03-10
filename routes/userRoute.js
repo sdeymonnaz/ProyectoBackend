@@ -24,6 +24,7 @@ const auth = (req, res, next) => {
 };
 
 //Rutas de la API ////////////////////////////////////////////////////////////////////////////////////////////////
+// Register a new user ////////////////////////////////////////////////////////////////////////////////////////////
 router.get('/register', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public/views/register.html'));
 });
@@ -37,9 +38,11 @@ router.post('/register',
 );
 
 router.get("/failedRegister", (req, res) => {
-    res.send("Usuario ya registrado");
+    res.sendFile(path.join(process.cwd(), "public/views/registerError.html"));
 });
 
+
+// Login ////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/login", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public/views/login.html"));
 });
@@ -52,24 +55,25 @@ router.post("/login",
 );
 
 router.get("/failedLogin", (req, res) => {
-    res.send("Usuario o contraseña incorrectos");
+    res.sendFile(path.join(process.cwd(), "public/views/loginError.html"));
 })
 
 router.get("/logout", (req, res) => {
     req.logout();
-    res.send("Logout exitoso");
+    res.sendFile(path.join(process.cwd(), "public/views/logout.html"));
 });
 
+// Home ////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/home", auth, (req, res) => {
+    cosole.log("Home");
     const User = req.user;
     const allProducts = newProd.getAll()
     .then(allProducts => {
-        res.send({allProducts, User});
+        res.render(path.join(process.cwd(), "public/views/home.ejs"), {user, products});
     })
     .catch(err => {
         res.send(err);
     });
-    //res.json({username: req.user.username});
 })
 
 
