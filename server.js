@@ -54,10 +54,10 @@ if(cluster.isPrimary && mode == "CLUSTER"){
   //Session
   app.use(cookieParser());
   app.use(session({
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
-      mongoOptions: advancedOptions
-    }),
+    // store: MongoStore.create({
+    //   mongoUrl: process.env.MONGODB_URI,
+    //   mongoOptions: advancedOptions
+    // }),
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,

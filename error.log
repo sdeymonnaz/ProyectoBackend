@@ -29,3 +29,17 @@
   }
 [2022-03-05T14:58:34.753] [ERROR] apisError - Error al registrar usuario: [object Object]
 [2022-03-05T15:01:11.967] [ERROR] apisError - Error al registrar usuario: [Function: next]
+[2022-03-09T01:14:23.602] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:17:44.094] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:27:29.981] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:34:41.267] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:36:22.408] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:39:01.522] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:40:34.534] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:42:28.990] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:43:59.148] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:45:43.744] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T01:47:04.750] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T20:21:15.248] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T20:40:57.552] [ERROR] apisError - Error en metodo sendEmail: null
+[2022-03-09T21:23:37.973] [ERROR] apisError - Error en metodo sendEmail: null

@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import upload from '../utils/uploadFiles.js';
 const {Router} = express;
 const router = new Router();
 import MongoDB from '../db/MongoDB.js';
@@ -24,10 +25,11 @@ const auth = (req, res, next) => {
 
 //Rutas de la API ////////////////////////////////////////////////////////////////////////////////////////////////
 router.get('/register', (req, res) => {
-    res.send('Registrar nuevo usuario');
+    res.sendFile(path.join(process.cwd(), 'public/views/register.html'));
 });
 
 router.post('/register',
+    await upload.single('AvatarFoto'),
     passport.authenticate("local-signup", {
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
@@ -39,7 +41,7 @@ router.get("/failedRegister", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-    res.send('Loguear usuario existente');
+    res.sendFile(path.join(process.cwd(), "public/views/login.html"));
 });
 
 router.post("/login",

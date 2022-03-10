@@ -3,9 +3,9 @@ import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
 import User from "../models/usuario.js";
 import {carritoDao as newCart } from '../Daos/DAOs.js';
-import upload from '../utils/uploadFiles.js';
 import { SendEmail } from '../utils/sendEmail.js';
 const sendEmailToAdmin = new SendEmail();
+
 
 
 //Encripcion de contraseña ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,30 +24,37 @@ const isValidPassword = (user, password) => {
 passport.use("local-login", new LocalStrategy(async (username, password, done) => {
     let user = await User.findOne({
         username: username,
+        password: password
     });
 
     console.log('user encontrado en MongoDB:', user);
 
-    if(!user) {
-        return done(null, false, { message: "Usuario no existente" });
+    if (user) {
+        return done(null, user);
     }
 
-    if (!isValidPassword(user, password)) {
-        return done(null, false, { message: "Usuario o contraseña incorrectos" });
-    }
+    return done(null, false, {message: "Usuario o contraseña incorrectos"});
 
-    return done(null, 
-        {
-            username: user.username,
-            nombre: user.nombre,
-            direccion: user.direccion,
-            edad: user.edad,
-            telefono: user.telefono,
-            foto: user.foto,
-            cart: user.cart
-        },    
-        { message: "Login exitoso" }
-    );
+    // if(!user) {
+    //     return done(null, false, { message: "Usuario no existente" });
+    // }
+
+    // if (!isValidPassword(user, password)) {
+    //     return done(null, false, { message: "Usuario o contraseña incorrectos" });
+    // }
+
+    // return done(null, 
+    //     {
+    //         username: user.username,
+    //         nombre: user.nombre,
+    //         direccion: user.direccion,
+    //         edad: user.edad,
+    //         telefono: user.telefono,
+    //         foto: user.foto,
+    //         cart: user.cart
+    //     },    
+    //     { message: "Login exitoso" }
+    // );
 }));
 
 //Sign-up de usuarios nuevos /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,26 +75,22 @@ passport.use("local-signup", new LocalStrategy(
     if (!user) {
         let userNew = await User({
             username,
-            password: hashPassword(password),
+            password,
+            //password: hashPassword(password),
             nombre: req.body.nombre,
             direccion: req.body.direccion,
             edad: req.body.edad,
             telefono: req.body.telefono,
+            foto: req.file.,
             cart: await newCart.saveCart()
         });
-        upload.upload(req, res, async (err) => {
-            if (err) {
-                console.log('error:', err);
-                return res.send(err);
-            }
-            userNew.foto = req.file.filename;
+            const AvatarFoto = req.body.foto;
             await userNew.save({returnNewDocument: true});
             console.log('userNew guardado en MongoDB:', userNew);
-            done(null, userNew);
-        });
-        sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, "Nuevo registro", `El usuario ${userNew.username} se ha registrado con estos detalles: \n Nombre: ${userNew.nombre} \n Dirección: ${userNew.direccion} \n Edad: ${userNew.edad} \n Telefono: ${userNew.telefono}`);
+            sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, "Nuevo registro", `El usuario ${userNew.username} se ha registrado con estos detalles: \n Nombre: ${userNew.nombre} \n Dirección: ${userNew.direccion} \n Edad: ${userNew.edad} \n Telefono: ${userNew.telefono}`);
+        return done(null, userNew);
     } else {
-        done(null, false, user, { message: "Usuario ya existe" });
+        return done(null, false, user, { message: "Usuario ya existe" });
     }
 }));
 
