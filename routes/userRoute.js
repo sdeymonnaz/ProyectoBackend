@@ -88,8 +88,9 @@ router.get("/home", auth, (req, res) => {
     .then(allProducts => {
         console.log("Home user", user);
         console.log("Home allProducts: ", allProducts);
-        res.send({user, allProducts});
-        //res.sendFile(path.join(process.cwd(), "public/views/home.html"), {user, products});
+        //res.send({user, allProducts});
+        //res.sendFile(path.join(process.cwd(), "public/views/home.html"), {user, allProducts});
+        res.render(path.join(process.cwd(), "public/views/home.ejs"), {user, allProducts});
     })
     .catch(err => {
         res.send(err);

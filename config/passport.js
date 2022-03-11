@@ -80,7 +80,7 @@ passport.use("local-signup", new LocalStrategy(
             const AvatarFoto = req.body.foto;
             await userNew.save({returnNewDocument: true});
             console.log('userNew guardado en MongoDB:', userNew);
-            sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, "Nuevo registro", `El usuario ${userNew.username} se ha registrado con estos detalles: \n Nombre: ${userNew.nombre} \n Dirección: ${userNew.direccion} \n Edad: ${userNew.edad} \n Telefono: ${userNew.telefono}`);
+            sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, "Nuevo registro", `El usuario ${userNew.username} se ha registrado con estos detalles: \n Nombre: ${userNew.nombre} \n Dirección: ${userNew.direccion} \n Edad: ${userNew.edad} \n Telefono: ${userNew.telefono} \n Foto: ${userNew.foto} \n Carrito: ${userNew.cart}`);
         return done(null, userNew);
     } else {
         return done(null, false, user, { message: "Usuario ya existe" });
