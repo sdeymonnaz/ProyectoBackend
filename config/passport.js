@@ -6,9 +6,12 @@ import {carritoDao as newCart } from '../Daos/DAOs.js';
 import { SendEmail } from '../utils/sendEmail.js';
 const sendEmailToAdmin = new SendEmail();
 
+//Configuracion de Logger
+import log4js from '.././utils/logger.js';
+const logger = log4js.getLogger();
+const loggerApi = log4js.getLogger('apisError');
 
-
-//Encripcion de contraseña ////////////////////////////////////////////////////////////////////////////////////////////////
+//Encriptamiento de contraseña ////////////////////////////////////////////////////////////////////////////////////////////////
 //Funcion para encriptar contraseña
 const hashPassword = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
@@ -16,8 +19,6 @@ const hashPassword = (password) => {
 
 //Funcion para desencriptar contraseña
 const isValidPassword = (user, password) => {
-    console.log("Password en isValidPassword: ", password);
-    console.log("Password en isValidPassword: ", bcrypt.compareSync(password, user.password));
     return bcrypt.compareSync(password, user.password);
 };
 
@@ -28,7 +29,7 @@ passport.use("local-login", new LocalStrategy(async (username, password, done) =
         username: username
     });
 
-    console.log('user encontrado en MongoDB:', user);
+    logger.info("User encontrado en MongoDB Atlas: ", user);
 
     if (!user) {
         return done(null, false, { message: "Usuario o contraseña incorrectos" });

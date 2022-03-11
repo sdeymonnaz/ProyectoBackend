@@ -68,18 +68,11 @@ router.delete("/:id/productos/:idProd", async (req, res) => {
 //Checkout cart
 router.post("/:id/checkout", async (req, res) => {
     const cartSel = await newCart.getCartById(req.params.id).then(data => {
-        console.log("CartSel:", data)
-        console.log("CartSel._id:", data._id.toString())
         return data
     })
     cartSel.checkout = true;
     await newCart.updateCart(cartSel);
-    const user = await User.find({_id:"622a995760fd78665574cd9f"}) .then(data => {
-        console.log("User:", data[0])
-        return data
-    })
     const cartUser = await User.find({cart: {$elemMatch: {_id : cartSel._id}}}).then(data => {
-        console.log("cartUser:", data)
         return data[0];
     })
     await sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, `Nuevo pedido de ${cartUser.username}`, `Usuario: ${cartUser.username} \n Nombre: ${cartUser.nombre} \n Dirección: ${cartUser.direccion} \n Telefono: ${cartUser.telefono} \n Productos: ${JSON.stringify(cartSel.productos, null, 2)}`);

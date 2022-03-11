@@ -19,8 +19,6 @@ const logger = log4js.getLogger();
 const loggerApi = log4js.getLogger('apisError');
 
 const auth = (req, res, next) => {
-    console.log("req.user en auth: ", req.user);
-    console.log("req.isAuthenticated() en auth: ", req.isAuthenticated());
     if (req.isAuthenticated()) {
         return next();
     }
@@ -68,33 +66,23 @@ router.get("/logout", (req, res) => {
 });
 
 // Home ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// router.get("/home", auth, (req, res) => {
-//     console.log("req.isAuthenticated en home:", req.isAuthenticated());
-//     console.log("Home req.user", req.user);
-//     const user = req.user;
-//     const allProducts = newProd.getAll()
-//     .then(allProducts => {
-//         res.render(path.join(process.cwd(), "public/views/home.ejs"), {user, products});
-//     })
-//     .catch(err => {
-//         res.send(err);
-//     });
-// })
-
 router.get("/home", auth, (req, res) => {
-    console.log("req.isAuthenticated en home:", req.isAuthenticated());
     const user = req.user;
-    const allProducts = newProd.getAll()
-    .then(allProducts => {
-        console.log("Home user", user);
-        console.log("Home allProducts: ", allProducts);
-        //res.send({user, allProducts});
-        //res.sendFile(path.join(process.cwd(), "public/views/home.html"), {user, allProducts});
-        res.render(path.join(process.cwd(), "public/views/home.ejs"), {user, allProducts});
+    const cartSel = newCart.getCartById(user.cart[0]._id).then(data => {
+        console.log(data.productos);
+        const allProducts = newProd.getAll()
+        .then(allProducts => {
+            res.render(path.join(process.cwd(), "public/views/home.ejs"), 
+            {
+                nombre: user.nombre,
+                foto: user.foto,
+                cart: data.productos,
+                allProducts});
+        })
+        .catch(err => {
+            res.send(err);
+        });
     })
-    .catch(err => {
-        res.send(err);
-    });
 })
 
 

@@ -11,19 +11,26 @@
     <h1>HOME</h1>
     <div class="container">
         <h1 id="welcome">Bienvenido</h1>
-        <div class="container d-flex my-2" id="loginBox">
-          <h3>Usuario: <%= user.username %></h3>
-          <h3>Nombre: <%= user.nombre %></h3>
-          <img src=/images/<%= user.foto %> style="width:3rem;"></img>
+        <div class="container d-flex justify-content-end my-2" id="loginBox">
+          <h3><%= nombre %></h3>
+          <img src=/images/<%= foto %> style="width:3rem;"></img>
         </div>
-        <h5>Carrito: <%= user.cart %></h5>
+        <div class="container d-flex bg-light my-2"></div>
+        <h3>Carrito:</h3>
+        <%cart.forEach(function(item){%>
+          <div class="container d-flex bg-light my-2" id="cartBox">
+            <h6 class="m-2">Título: <%= item.nombre %> </h6>
+            <h6 class="m-2">Precio: <%= item.precio %></h6>
+            <img class="m-2" src=<%=item.foto %> style="width:3rem;"></img>
+          </div>
+        <%})%>
         <button type="button" class="btn btn-primary my-2" id="logoffButton" onclick="location.href='/api/logout'">Log off</button>
 
         <h2>Product list</h2>
        <div class="container d-flex">
             <% allProducts.forEach(function(product) { %>
-            <div class="card m-2" style="width: 18rem;">
-                <img src=<%= product.foto %> class="card-img-top" style="height:18rem;" alt="...">
+            <div class="card m-2" style="width: 14rem;">
+                <img src=<%= product.foto %> class="card-img-top" style="width: 14rem; height:18rem;">
                     <div class="card-body">
                         <h5 class="card-title"><%= product.nombre %></h5>
                         <h6 class="card-subtitle mb-2 text-muted"><%= product.precio %></h6>
