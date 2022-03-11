@@ -8,23 +8,25 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>HOME</h1>
-    <div class="container">
-        <h1 id="welcome">Bienvenido</h1>
+    <div class="container m-3 p-2">
+        <h1 id="welcome">Bienvenido al sitio</h1>
         <div class="container d-flex justify-content-end my-2" id="loginBox">
-          <h3><%= nombre %></h3>
-          <img src=/images/<%= foto %> style="width:3rem;"></img>
+            <div class="d-flex flex-column align-items-center">
+                <img src=/images/<%= foto %> style="width:3rem;"></img>
+                <h4><%= nombre %></h4>
+                <button type="button" class="btn btn-primary" id="logoffButton" onclick="location.href='/api/logout'">Log off</button>
+            </div>
         </div>
+
         <div class="container d-flex bg-light my-2"></div>
-        <h3>Carrito:</h3>
-        <%cart.forEach(function(item){%>
-          <div class="container d-flex bg-light my-2" id="cartBox">
-            <h6 class="m-2">Título: <%= item.nombre %> </h6>
-            <h6 class="m-2">Precio: <%= item.precio %></h6>
-            <img class="m-2" src=<%=item.foto %> style="width:3rem;"></img>
-          </div>
-        <%})%>
-        <button type="button" class="btn btn-primary my-2" id="logoffButton" onclick="location.href='/api/logout'">Log off</button>
+            <h4>Carrito: <%= cartId %></h4>
+            <%cart.forEach(function(item){%>
+            <div class="container d-flex bg-light my-2" id="cartBox">
+                <h6 class="m-2">Título: <%= item.nombre %> </h6>
+                <h6 class="m-2">Precio: <%= item.precio %></h6>
+                <img class="m-2" src=<%=item.foto %> style="width:3rem;"></img>
+            </div>
+            <%})%>
 
         <h2>Product list</h2>
        <div class="container d-flex">

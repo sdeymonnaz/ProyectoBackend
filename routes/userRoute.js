@@ -69,13 +69,14 @@ router.get("/logout", (req, res) => {
 router.get("/home", auth, (req, res) => {
     const user = req.user;
     const cartSel = newCart.getCartById(user.cart[0]._id).then(data => {
-        console.log(data.productos);
+        const cartId = JSON.stringify(user.cart[0]._id);
         const allProducts = newProd.getAll()
         .then(allProducts => {
             res.render(path.join(process.cwd(), "public/views/home.ejs"), 
             {
                 nombre: user.nombre,
                 foto: user.foto,
+                cartId: cartId,
                 cart: data.productos,
                 allProducts});
         })
