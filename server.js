@@ -47,6 +47,9 @@ if(cluster.isPrimary && mode == "CLUSTER"){
   app.use(express.static(path.join(__dirname, 'public')));
   app.use('public/images', express.static(path.join(__dirname, 'public/images')));
 
+   //Engine de EJS para plantillas
+   app.set('view engine', 'ejs');
+
   //Lectura de archivos JSON y envio de datos
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
@@ -61,7 +64,7 @@ if(cluster.isPrimary && mode == "CLUSTER"){
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {maxAge: 600000},
+    cookie: {maxAge: 60000},
   }))
 
   ///Passport

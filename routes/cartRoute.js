@@ -67,18 +67,18 @@ router.delete("/:id/productos/:idProd", async (req, res) => {
 
 //Checkout cart
 router.post("/:id/checkout", async (req, res) => {
-    const cart = await newCart.getCartById(req.params.id).then(data => {
+    const cartSel = await newCart.getCartById(req.params.id).then(data => {
         return data
     })
-    cart.checkout = true;
-    await newCart.updateCart(cart);
-    const cartUser = await User.find({cart: cart._id.toString()}).then(data => {
+    cartSel.checkout = true;
+    await newCart.updateCart(cartSel);
+    const cartUser = await User.find({cart: {$elemMatch: {_id : cartSel._id}}}).then(data => {
         return data[0];
     })
-    await sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, `Nuevo pedido de ${cartUser.username}`, `Usuario: ${cartUser.username} \n Nombre: ${cartUser.nombre} \n Dirección: ${cartUser.direccion} \n Telefono: ${cartUser.telefono} \n Productos: ${JSON.stringify(cart.productos, null, 2)}`);
+    await sendEmailToAdmin.sendEmail(process.env.ADMIN_EMAIL, `Nuevo pedido de ${cartUser.username}`, `Usuario: ${cartUser.username} \n Nombre: ${cartUser.nombre} \n Dirección: ${cartUser.direccion} \n Telefono: ${cartUser.telefono} \n Productos: ${JSON.stringify(cartSel.productos, null, 2)}`);
     await sendSMSToUser.send(cartUser.telefono, `Nuevo pedido de ${cartUser.username} recibido y en proceso de preparacion`);
     await sendWAtoUser.send(cartUser.telefono, `Nuevo pedido de ${cartUser.username}`);
-    res.json(cart);
+    res.json(cartSel);
 })
 
 

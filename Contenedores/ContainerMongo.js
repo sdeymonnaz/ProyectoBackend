@@ -135,19 +135,19 @@ export class CarritoMongo {
 }
 
 // USUARIOS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export class UsuarioMongo {
-    constructor(coleccion) { 
-        this.modelo = mongoose.model(coleccion, {
-            username: String,
-            password: String,
-            nombre: String,
-            direccion: String,
-            edad: Number,
-            telefono: String,
-            foto: String,
-            cart: Array,
-        });
-    }
+// export class UsuarioMongo {
+//     constructor(coleccion) { 
+//         this.modelo = mongoose.model(coleccion, {
+//             username: String,
+//             password: String,
+//             nombre: String,
+//             direccion: String,
+//             edad: Number,
+//             telefono: String,
+//             foto: String,
+//             cart: Array,
+//         });
+//     }
 
     // async findUserByCartId(cartId) {
     //     try {
@@ -159,4 +159,4 @@ export class UsuarioMongo {
     //     }
     // }
 
-}
+// }

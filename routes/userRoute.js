@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import upload from '../utils/uploadFiles.js';
 const {Router} = express;
 const router = new Router();
 import MongoDB from '../db/MongoDB.js';
@@ -18,16 +19,20 @@ const logger = log4js.getLogger();
 const loggerApi = log4js.getLogger('apisError');
 
 const auth = (req, res, next) => {
-    if (req.isAuthenticated()) return next();
+    if (req.isAuthenticated()) {
+        return next();
+    }
     res.redirect("/api/login");
 };
 
 //Rutas de la API ////////////////////////////////////////////////////////////////////////////////////////////////
+// Register a new user ////////////////////////////////////////////////////////////////////////////////////////////
 router.get('/register', (req, res) => {
-    res.send('Registrar nuevo usuario');
+    res.sendFile(path.join(process.cwd(), 'public/views/register.html'));
 });
 
 router.post('/register',
+    await upload.single('foto'),
     passport.authenticate("local-signup", {
         successRedirect: "/api/login",
         failureRedirect: "/api/failedRegister"
@@ -35,11 +40,13 @@ router.post('/register',
 );
 
 router.get("/failedRegister", (req, res) => {
-    res.send("Usuario ya registrado");
+    res.sendFile(path.join(process.cwd(), "public/views/registerError.html"));
 });
 
+
+// Login ////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/login", (req, res) => {
-    res.send('Loguear usuario existente');
+    res.sendFile(path.join(process.cwd(), "public/views/login.html"));
 });
 
 router.post("/login",
@@ -50,24 +57,33 @@ router.post("/login",
 );
 
 router.get("/failedLogin", (req, res) => {
-    res.send("Usuario o contraseña incorrectos");
+    res.sendFile(path.join(process.cwd(), "public/views/loginError.html"));
 })
 
 router.get("/logout", (req, res) => {
     req.logout();
-    res.send("Logout exitoso");
+    res.sendFile(path.join(process.cwd(), "public/views/logout.html"));
 });
 
+// Home ////////////////////////////////////////////////////////////////////////////////////////////////////////
 router.get("/home", auth, (req, res) => {
-    const User = req.user;
-    const allProducts = newProd.getAll()
-    .then(allProducts => {
-        res.send({allProducts, User});
+    const user = req.user;
+    const cartSel = newCart.getCartById(user.cart[0]._id).then(data => {
+        const cartId = JSON.stringify(user.cart[0]._id);
+        const allProducts = newProd.getAll()
+        .then(allProducts => {
+            res.render(path.join(process.cwd(), "public/views/home.ejs"), 
+            {
+                nombre: user.nombre,
+                foto: user.foto,
+                cartId: cartId,
+                cart: data.productos,
+                allProducts});
+        })
+        .catch(err => {
+            res.send(err);
+        });
     })
-    .catch(err => {
-        res.send(err);
-    });
-    //res.json({username: req.user.username});
 })
 
 
