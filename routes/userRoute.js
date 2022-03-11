@@ -27,6 +27,10 @@ const auth = (req, res, next) => {
 
 //Rutas de la API ////////////////////////////////////////////////////////////////////////////////////////////////
 // Register a new user ////////////////////////////////////////////////////////////////////////////////////////////
+router.get('/', (req, res) => {
+    res.redirect('/api/login');
+});
+
 router.get('/register', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public/views/register.html'));
 });
